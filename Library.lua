@@ -355,7 +355,7 @@ do
 				["jaydes.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/jaydes.png"),
 				["1.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/1.png"),
 				["kick.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/kick.png"),
-				["latte-logo.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/latte-logo.png"),
+				["latte_logo.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/latte_logo.png"),
 				["saturation.png"] = safeHttp(
 					"https://raw.githubusercontent.com/whft/latte/main/assets/saturation.png"
 				),
@@ -755,7 +755,7 @@ do
 
 	local logo = drawing_proxy["new"]("Image", {
 		["Color"] = menu["colors"]["accent"],
-		["Data"] = readfile(file_path .. "/assets/latte-logo.png"),
+		["Data"] = readfile(file_path .. "/assets/latte_logo.png"),
 		["Position"] = udim2_new(0, 15, 0, 15),
 		["Parent"] = inside,
 		["Size"] = udim2_new(0, 35, 0, 35),
@@ -947,7 +947,7 @@ do
 
 	local drag_logo = drawing_proxy["new"]("Image", {
 		["Color"] = menu["colors"]["accent"],
-		["Data"] = readfile(file_path .. "/assets/latte-logo.png"),
+		["Data"] = readfile(file_path .. "/assets/latte_logo.png"),
 		["Position"] = udim2_new(0.5, -40, 0.5, -40),
 		["Parent"] = drag_inside,
 		["Size"] = udim2_new(0, 80, 0, 80),
