@@ -339,57 +339,57 @@ do
 
 		local files = {
 			["assets"] = {
-				["api.lua"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/api.lua"),
-				["sparkle.ogg"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/sparkle.ogg"),
-				["skeet.ogg"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/skeet.ogg"),
+				["api.lua"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/api.lua"),
+				["sparkle.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/sparkle.ogg"),
+				["skeet.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/skeet.ogg"),
 				["neverlose.ogg"] = safeHttp(
-					"https://raw.githubusercontent.com/panduh16/latte/main/assets/neverlose.ogg"
+					"https://raw.githubusercontent.com/whft/latte/main/assets/neverlose.ogg"
 				),
-				["break.ogg"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/break.ogg"),
-				["mc bow.ogg"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/mc%20bow.ogg"),
+				["break.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/break.ogg"),
+				["mc bow.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/mc%20bow.ogg"),
 				["primordial.ogg"] = safeHttp(
-					"https://raw.githubusercontent.com/panduh16/latte/main/assets/primordial.ogg"
+					"https://raw.githubusercontent.com/whft/latte/main/assets/primordial.ogg"
 				),
-				["rust.ogg"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/rust.ogg"),
-				["sexy.ogg"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/sexy.ogg"),
-				["jaydes.png"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/jaydes.png"),
-				["1.png"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/1.png"),
-				["kick.png"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/kick.png"),
-				["logo.png"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/logo.png"),
+				["rust.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/rust.ogg"),
+				["sexy.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/sexy.ogg"),
+				["jaydes.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/jaydes.png"),
+				["1.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/1.png"),
+				["kick.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/kick.png"),
+				["latte-logo.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/latte-logo.png"),
 				["saturation.png"] = safeHttp(
-					"https://raw.githubusercontent.com/panduh16/latte/main/assets/saturation.png"
+					"https://raw.githubusercontent.com/whft/latte/main/assets/saturation.png"
 				),
 			},
 			["custom"] = {
 				["textures.json"] = safeHttp(
-					"https://raw.githubusercontent.com/panduh16/latte/main/assets/textures.json"
+					"https://raw.githubusercontent.com/whft/latte/main/assets/textures.json"
 				),
 				["character.rbxm"] = debugRBXM(
 					"custom",
 					"character.rbxm",
-					"https://raw.githubusercontent.com/panduh16/latte/main/assets/character.rbxm"
+					"https://raw.githubusercontent.com/whft/latte/main/assets/character.rbxm"
 				),
 				["pinksky.rbxm"] = debugRBXM(
 					"custom",
 					"pinksky.rbxm",
-					"https://raw.githubusercontent.com/panduh16/latte/main/assets/pinksky.rbxm"
+					"https://raw.githubusercontent.com/whft/latte/main/assets/pinksky.rbxm"
 				),
-				["crunch.ogg"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/latte.ogg"),
-				["scar.ogg"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/scar.ogg"),
+				["crunch.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/latte.ogg"),
+				["scar.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/scar.ogg"),
 				["x hit.rbxm"] = debugRBXM(
 					"custom",
 					"x hit.rbxm",
-					"https://raw.githubusercontent.com/panduh16/latte/main/assets/x%20hit.rbxm"
+					"https://raw.githubusercontent.com/whft/latte/main/assets/x%20hit.rbxm"
 				),
 				["blossom aura.rbxm"] = debugRBXM(
 					"custom",
 					"blossom aura.rbxm",
-					"https://raw.githubusercontent.com/panduh16/latte/main/assets/blossom%20aura.rbxm"
+					"https://raw.githubusercontent.com/whft/latte/main/assets/blossom%20aura.rbxm"
 				),
-				["spam.json"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/spam.json"),
+				["spam.json"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/spam.json"),
 			},
 			["themes"] = {
-				["default.th"] = safeHttp("https://raw.githubusercontent.com/panduh16/latte/main/assets/default.th"),
+				["default.th"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/default.th"),
 			},
 			["addons"] = {},
 			["configs"] = {},
@@ -755,7 +755,7 @@ do
 
 	local logo = drawing_proxy["new"]("Image", {
 		["Color"] = menu["colors"]["accent"],
-		["Data"] = readfile(file_path .. "/assets/logo.png"),
+		["Data"] = readfile(file_path .. "/assets/latte-logo.png"),
 		["Position"] = udim2_new(0, 15, 0, 15),
 		["Parent"] = inside,
 		["Size"] = udim2_new(0, 35, 0, 35),
@@ -947,7 +947,7 @@ do
 
 	local drag_logo = drawing_proxy["new"]("Image", {
 		["Color"] = menu["colors"]["accent"],
-		["Data"] = readfile(file_path .. "/assets/logo.png"),
+		["Data"] = readfile(file_path .. "/assets/latte-logo.png"),
 		["Position"] = udim2_new(0.5, -40, 0.5, -40),
 		["Parent"] = drag_inside,
 		["Size"] = udim2_new(0, 80, 0, 80),
