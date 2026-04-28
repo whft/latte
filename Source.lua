@@ -1085,31 +1085,29 @@ do
                 print('Latte: UI library loaded successfully')
             end
             local cc = function(signal, cb)
-                if not lib or not lib['create_connection'] then
-                    warn('Latte: UI callback connection skipped - library not ready')
-
-                    return
-                end
                 if not signal then
-                    warn('Latte: UI callback connection skipped - nil signal')
-
                     return
                 end
 
-                print('Latte: Connecting UI signal...')
-                lib['create_connection'](signal, function(...)
-                    local args = {...}
+                local ok, err = pcall(function()
+                    signal:Connect(function(...)
+                        local args = {...}
 
-                    if type(args[1]) == 'table' and #args[1] == 1 then
-                        args[1] = args[1][1]
-                    end
+                        if type(args[1]) == 'table' and #args[1] == 1 then
+                            args[1] = args[1][1]
+                        end
 
-                    local ok, err = pcall(cb, unpack(args))
+                        local cbok, cberr = pcall(cb, unpack(args))
 
-                    if not ok then
-                        warn('Latte: UI callback error: ' .. tostring(err))
-                    end
+                        if not cbok then
+                            warn('Latte: UI callback error: ' .. tostring(cberr))
+                        end
+                    end)
                 end)
+
+                if not ok then
+                    warn('Latte: Signal connect failed: ' .. tostring(err))
+                end
             end
 
             function ui.build(unload_fn)
