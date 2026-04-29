@@ -21,7 +21,7 @@ local midnight_ids = {
 if main_dh_ids[place_id] then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/whft/latte/main/dahood/main/source.lua"))()
 elseif midnight_ids[place_id] then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/whft/latte/main/hub/source.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/whft/latte/main/hub/Source.lua"))()
 else
     loadstring(game:HttpGet("https://raw.githubusercontent.com/whft/latte/main/dahood/copies/source.lua"))()
 end
