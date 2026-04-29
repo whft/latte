@@ -4,7 +4,6 @@ if (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") then
     cleardrawcache()
 end
 
--- > ( luraph variables )
 
 if not LPH_OBFUSCATED then
     LPH_JIT_MAX = function(...) return ... end
@@ -16,7 +15,6 @@ end
 
 getgenv()["Latte"] = {}
 
--- > ( bypass )
 
 LPH_JIT_MAX(function()
     if not getgenv().done then
@@ -63,7 +61,7 @@ LPH_JIT_MAX(function()
 
             return fake_old
         end
-        print("connection_count =", connection_count)
+        
 			
         old = nil; old = safe_hook_function(signal.__index, LPH_NO_UPVALUES(function(self, index)
             if (index:find("^[Cc]onnect")) and getinfo(3) then
@@ -86,7 +84,6 @@ LPH_JIT_MAX(function()
     end
 end)()
 
--- > ( global cheat variables )
 
 local user_input_service = cloneref(game:GetService("UserInputService"))
     local get_mouse_location = user_input_service["GetMouseLocation"]
@@ -137,7 +134,6 @@ local flags = {
     ["skins"] = {}
 }
 
--- > ( global cheat functions )
 
 local create_connection = LPH_NO_VIRTUALIZE(function(signal, callback)
     local connection = signal:Connect(callback)
@@ -169,12 +165,10 @@ local remove = LPH_NO_VIRTUALIZE(function(tbl, index)
     tbl[length] = nil
 end)
 
--- > ( signal library )
 
 local signal = {}
 
 do
-    -- > ( connection class)
 
     local connection = {}
 
@@ -203,7 +197,6 @@ do
         end
     end
 
-    -- > ( signal class )
 
     signal["__index"] = signal
 
@@ -225,7 +218,6 @@ do
     end
 end
 
--- > ( tween library )
 
 local active_tweens = {
     Color = {},
@@ -313,12 +305,11 @@ do
     end)
 end
 
--- > ( menu )
 
 
 -- > ( latte library engine )
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/Library.lua"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/whft/latte/main/Library.lua"))()
 local menu_lib = lib.menu
 
 local menu = {
@@ -327,20 +318,20 @@ local menu = {
     colors = {
         ["shadow"] = Color3.fromRGB(255, 170, 255),
         ["accent"] = Color3.fromRGB(255, 170, 255),
-        ["active_text"] = Color3.fromRGB(197, 197, 197),
-        ["keybind_text"] = Color3.fromRGB(197, 197, 197),
-        ["border"] = Color3.fromRGB(24, 25, 24),
-        ["inactive_text"] = Color3.fromRGB(75, 72, 72),
-        ["highlighted"] = Color3.fromRGB(51, 65, 70),
-        ["dark_text"] = Color3.fromRGB(70, 85, 87),
-        ["image"] = Color3.fromRGB(89, 89, 89),
-        ["section"] = Color3.fromRGB(6, 6, 6),
-        ["background"] = Color3.fromRGB(0, 0, 0),
+        ["active_text"] = Color3.fromRGB(255, 255, 255),
+        ["keybind_text"] = Color3.fromRGB(200, 200, 200),
+        ["border"] = Color3.fromRGB(25, 25, 25),
+        ["inactive_text"] = Color3.fromRGB(120, 120, 120),
+        ["highlighted"] = Color3.fromRGB(45, 45, 45),
+        ["dark_text"] = Color3.fromRGB(80, 80, 80),
+        ["image"] = Color3.fromRGB(255, 170, 255),
+        ["section"] = Color3.fromRGB(12, 12, 12),
+        ["background"] = Color3.fromRGB(8, 8, 8),
         ["success"] = Color3.fromRGB(255, 170, 255),
-        ["error"] = Color3.fromRGB(39, 60, 96),
-        ["alert"] = Color3.fromRGB(30, 51, 61),
+        ["error"] = Color3.fromRGB(200, 50, 50),
+        ["alert"] = Color3.fromRGB(255, 170, 255),
         ["logo"] = Color3.fromRGB(255, 170, 255),
-        ["Latte"] = Color3.fromRGB(255, 170, 255),
+        ["Latte Private"] = Color3.fromRGB(255, 170, 255),
         ["build"] = Color3.fromRGB(255, 170, 255),
         ["cursor"] = Color3.fromRGB(255, 170, 255),
     },
@@ -354,27 +345,27 @@ local menu = {
     theme = ""
 }
 
--- Juju Compatibility Layer
+-- Latte Private Compatibility Layer
 function menu.create_group(name)
     local g = menu_lib.create_group(name)
     menu.groups[name] = g
-    
+
     local wrapper = {}
     wrapper.__index = wrapper
-    
+
     function wrapper:create_tab(tab_name)
         return g:create_tab(tab_name)
     end
-    
+
     function wrapper:create_section(tab_name, section_name, col, h, off)
         local sec = g:create_section(tab_name, section_name, col, h, off)
-        
+
         local sec_wrapper = {}
         sec_wrapper.__index = sec_wrapper
-        
+
         function sec_wrapper:create_element(info, options)
             local el = sec:create_element(info, options)
-            
+
             if options.toggle then
                 el.on_toggle_change = { Connect = function(s, f) el:on_change(f) end, Fire = function() end }
             elseif options.slider then
@@ -384,25 +375,25 @@ function menu.create_group(name)
             elseif options.button then
                 el.on_clicked = { Connect = function(s, f) el.callback = f end, Fire = function() end }
             end
-            
+
             el.set_visible = function(self, v) end
             el.set_info = function(self, p, v) end
             el.set_toggle = function(self, v) el:set_value(v) end
             el.set_slider = function(self, v) el:set_value(v) end
             el.set_dropdown = function(self, v) el:set_value(v) end
-            
+
             return el
         end
-        
+
         function sec_wrapper:create_panel_section(...) return self:create_section(...) end
-        
+
         setmetatable(sec_wrapper, { __index = sec })
         return sec_wrapper
     end
-    
+
     function wrapper:create_panel_section(...) return self:create_section(...) end
     function wrapper:hide() end
-    
+
     setmetatable(wrapper, { __index = g })
     return wrapper
 end
@@ -429,7 +420,7 @@ do
             -- ... other assets ...
         }
     }
-    
+
     if not isfolder("Latte recode") then makefolder("Latte recode") end
     -- (Recursive check logic here)
 end
@@ -482,7 +473,6 @@ end
             }
         })
 
-        -- >> ( configs )
 
         local config_list = menu["groups"]["misc."]:create_panel_section("configs", "config list", 1, false, true)
         local config_info = menu["groups"]["misc."]:create_section("configs", "config info", 2, 0.3, 0)
@@ -713,7 +703,6 @@ end
         load_config:set_visible(false)
     end
 
-    -- > ( loading / unloading )
 
     do
         local unload = getgenv()["_LATTE"]
@@ -785,7 +774,6 @@ end
             old_drawing["_UNLOAD"]()
         end
 
-        -- >> ( data )
 
         local s, data = pcall(function()
             return http_service:JSONDecode(readfile("Latte recode/data.dat"))
@@ -831,7 +819,6 @@ end
     end
 end
 
--- > ( cheat signals )
 
 local signals = {
     ["on_local_character_description_changed"] = signal["new"](),
@@ -884,7 +871,6 @@ local body_parts = {
     "RightFoot"
 }
 
--- > ( cheat variables )
 
 local workspace = game:GetService("Workspace")
     local camera = workspace["CurrentCamera"]
@@ -935,7 +921,6 @@ local local_guns = {}
 local anti_aim = {}
 
 
--- > ( cheat functions )
 
 local create_real_drawing = LPH_NO_VIRTUALIZE(function(class, properties)
     local object = real_drawing["new"](class)
@@ -982,7 +967,6 @@ local get_bullet_result = nil
 local purchase_item = nil
 local force_aim_position = nil
 
--- > ( client stuff )
 
 local local_server_position = cframe_new()
 local local_client_position = cframe_new()
@@ -1213,7 +1197,6 @@ do
     create_connection(local_player["CharacterAdded"], on_character_added)
 end
 
--- >> ( vehicles )
 
 do
     local name = local_player["Name"]
@@ -1315,12 +1298,10 @@ do
     end
 end
 
--- > ( hit detection )
 
 local shot_count = 0
 
 do
-    -- >> ( variables )
 
     local setthreadidentity = setthreadidentity
     local getnamecallmethod = getnamecallmethod
@@ -1330,7 +1311,6 @@ do
     local older_health = nil
     local older_data = nil
 
-    -- >> ( event setup )
 
     get_bullet_result = LPH_JIT_MAX(function(player, part, old_server_position, aim_position, target_velocity, did_defensive)
         setthreadidentity(8)
@@ -1367,7 +1347,6 @@ do
         end
     end)
 
-    -- >> ( remote hook )
 
     local game_on_client_event = nil
 
@@ -1500,7 +1479,6 @@ do
     setrawmetatable(event, new)
 end
 
--- > ( shop )
 
 do
     local item_section = menu["groups"]["misc."]:create_panel_section("shop", "items", 1, true)
@@ -1615,7 +1593,6 @@ do
         end
     end)()
 
-    -- >> ( purchasing )
 
     local new_bought_count = 0
     local purchase_count = 1
@@ -1842,23 +1819,19 @@ do
     end))
 end
 
--- > ( movement )
 
 do
     menu_references["movement_section"] = menu["groups"]["misc."]:create_section("main", "movement", 1, 0.6, 0)
 
-    -- >> ( removals )
 
     menu_references["remove_jump_cooldown"] = menu_references["movement_section"]:create_element({["name"] = "remove jump cooldown"}, {["toggle"] = {["flag"] = "remove_jump_cooldown"}})
     menu_references["remove_slowdowns"] = menu_references["movement_section"]:create_element({["name"] = "remove slowdowns"}, {["toggle"] = {["flag"] = "remove_slowdowns"}})
 
-    -- >> ( jump power )
 
     menu_references["jump_power"] = menu_references["movement_section"]:create_element({["name"] = "jump power"}, {["toggle"] = {["flag"] = "jump_power"}})
     menu_references["jump_power_settings"] = menu_references["jump_power"]:create_settings()
     menu_references["jump_power_value"] = menu_references["jump_power_settings"]:create_element({["name"] = "power"}, {["slider"] = {["flag"] = "jump_power_value", ["min"] = 0, ["max"] = 1000, ["default"] = 50}})
 
-    -- >> ( anti sit )
 
     menu_references["anti_trip"] = menu_references["movement_section"]:create_element({["name"] = "anti trip"}, {["toggle"] = {["flag"] = "anti_trip"}})
 
@@ -1904,7 +1877,6 @@ do
         end
     end))
 
-    -- >> ( anti sit )
 
     menu_references["anti_sit"] = menu_references["movement_section"]:create_element({["name"] = "anti sit"}, {["toggle"] = {["flag"] = "anti_sit"}})
 
@@ -1959,7 +1931,6 @@ do
         end
     end))
 
-    -- >> ( noclip )
 
     menu_references["noclip"] = menu_references["movement_section"]:create_element({["name"] = "noclip"}, {["toggle"] = {["flag"] = "noclip"}})
 
@@ -1985,7 +1956,6 @@ do
         end
     end)
 
-    -- >> ( speed )
 
     local is_key_down = user_input_service["IsKeyDown"]
 
@@ -2080,7 +2050,6 @@ do
         slippery_stop_in_air = value
     end)
 
-    -- >> ( flight )
 
     local float_velocity = vector3_new(0, pi - 2, 0)
 
@@ -2125,7 +2094,6 @@ do
 
     menu_references["other_section"] = menu["groups"]["misc."]:create_section("main", "other", 1, 0.4, 0.6)
 
-    -- >> ( animation breaker )
 
     menu_references["animation_breaker"] = menu_references["other_section"]:create_element({["name"] = "animation breaker"}, {["toggle"] = {["flag"] = "animation_breaker"}})
     menu_references["animation_breaker_settings"] = menu_references["animation_breaker"]:create_settings()
@@ -2226,7 +2194,6 @@ do
         jitter = value ~= 0 and value/100 or nil
     end))
 
-    -- >> ( animation player )
 
     menu_references["animation_player"] = menu_references["other_section"]:create_element({["name"] = "animation player"}, {["toggle"] = {["flag"] = "animation_player"}})
         menu_references["animation_player_settings"] = menu_references["animation_player"]:create_settings()
@@ -2317,7 +2284,6 @@ do
         end
     end)
 
-    -- >> ( trash talk )
     
     do
         local event = find_first_child(replicated_storage, "DefaultChatSystemChatEvents")
@@ -2460,7 +2426,6 @@ do
         end
     end 
 
-    -- >> ( spinbot )
 
     local spinbot_speed = 50
 
@@ -2508,12 +2473,10 @@ do
     end))
 end
 
--- > ( misc )
 
 do
     menu_references["utility_section"] = menu["groups"]["misc."]:create_section("main", "utility", 2, 0.7, 0)
 
-    -- >> ( remove flintlock knockback )
 
     do
         local function check_connection(connection)
@@ -2580,7 +2543,6 @@ do
         end)
     end
 
-    -- >> ( unlock custom crosshair )
 
     menu_references["unlock_custom_crosshair"] = menu_references["utility_section"]:create_element({["name"] = "unlock custom crosshair"}, {["toggle"] = {["flag"] = "unlock_custom_crosshair"}})
 
@@ -2624,7 +2586,6 @@ do
         end
     end)
 
-    -- >> ( unlock animation packs )
 
     menu_references["unlock_animation_packs"] = menu_references["utility_section"]:create_element({["name"] = "unlock animation packs"}, {["toggle"] = {["flag"] = "unlock_animation_packs"}})
 
@@ -2781,7 +2742,6 @@ do
         end
     end)
     
-    -- >> ( unlock camera distance )
 
     menu_references["unlock_camera_distance"] = menu_references["utility_section"]:create_element({["name"] = "unlock camera distance"}, {["toggle"] = {["flag"] = "unlock_camera_distance"}})
 
@@ -2791,7 +2751,6 @@ do
         local_player["CameraMaxZoomDistance"] = bool and 9e9 or old_distance
     end)
 
-    -- >> ( remove anti gun macro )
 
     menu_references["remove_anti_gun_macro"] = menu_references["utility_section"]:create_element({["name"] = "remove anti gun macro"}, {["toggle"] = {["flag"] = "remove_anti_gun_macro"}})
 
@@ -2832,7 +2791,6 @@ do
     menu_references["automatic_guns"] = menu_references["utility_section"]:create_element({["name"] = "automatic guns"}, {["toggle"] = {["flag"] = "automatic_guns"}})
     menu_references["remove_recoil"] = menu_references["utility_section"]:create_element({["name"] = "remove recoil"}, {["toggle"] = {["flag"] = "remove_recoil"}})
 
-    -- >> ( automatic guns )
 
     do
         local connection = nil
@@ -2865,7 +2823,6 @@ do
         end)
     end
 
-    -- >> ( auto vehicle )
 
     do
         local packet_receiver = replicated_storage.Bike.Events.PacketReceiver
@@ -3000,7 +2957,6 @@ do
         end)
     end
 
-    -- >> ( auto reload )
 
     menu_references["auto_reload"] = menu_references["utility_section"]:create_element({["name"] = "auto reload"}, {["toggle"] = {["flag"] = "auto_reload"}})
         menu_references["auto_reload_settings"] = menu_references["auto_reload"]:create_settings()
@@ -3116,7 +3072,6 @@ do
         end
     end)
 
-    -- >> ( detect staff )
 
     menu_references["detect_staff"] = menu_references["utility_section"]:create_element({["name"] = "detect staff"}, {["toggle"] = {["default"] = true, ["flag"] = "detect_staff"}, ["dropdown"] = {["options"] = {"notify", "kick"}, ["flag"] = "detect_staff_options", ["default"] = {"notify"}, ["requires_one"] = true, ["multi"] = true}})
 
@@ -3178,7 +3133,6 @@ do
     end)
 
 
-    -- >> ( redeem codes )
 
     create_connection(menu_references["utility_section"]:create_element({["name"] = "redeem codes"}, {["button"] = {}})["on_clicked"], function()
         local html = game:HttpGet("https://gamerant.com/roblox-da-hood-codes/")
@@ -3197,7 +3151,6 @@ do
         end
     end)
 
-    -- >> ( get vehicle )
 
     do
         local old_cframe = nil
@@ -3289,7 +3242,6 @@ do
         end
     end)
 
-    -- >> ( tools )
 
     menu_references["server_section"] = menu["groups"]["misc."]:create_section("main", "server", 2, 0.3, 0.7)
     create_connection(menu_references["server_section"]:create_element({["name"] = "copy join script"}, {["button"] = {}})["on_clicked"], function()
@@ -3336,7 +3288,6 @@ do
     end)
 end
 
--- > ( player data )
 
 local local_crew = nil
 
@@ -3357,7 +3308,6 @@ do
         saved_statuses[data[2]["Name"]] = status
     end)
 
-    -- >> ( player editor )
 
     local selected_player = nil
 
@@ -3457,7 +3407,6 @@ do
         end
     end)
 
-    -- >> ( player interactions )
 
     local player_interactions = menu["groups"]["misc."]:create_section("players", "player interactions", 2, 0.6, 0.4)
         menu_references["auto_save_friendlies"] = player_interactions:create_element({["name"] = "auto save friendlies"}, {["toggle"] = {["flag"] = "auto_save_friendlies"}})
@@ -3590,7 +3539,6 @@ do
         end
     end)
 
-    -- >> ( player data creation )
 
     local blank_player_image_data = base64_decode("iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURf///wAAAFXC034AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABh0RVh0U29mdHdhcmUAUGFpbnQuTkVUIDUuMS4y+7wDtgAAALZlWElmSUkqAAgAAAAFABoBBQABAAAASgAAABsBBQABAAAAUgAAACgBAwABAAAAAgAAADEBAgAQAAAAWgAAAGmHBAABAAAAagAAAAAAAAAMdwEA6AMAAAx3AQDoAwAAUGFpbnQuTkVUIDUuMS4yAAMAAJAHAAQAAAAwMjMwAaADAAEAAAABAAAABaAEAAEAAACUAAAAAAAAAAIAAQACAAQAAABSOTgAAgAHAAQAAAAwMTAwAAAAAO7qLRjGzAACAAAAI0lEQVQYV2NgZGRkAAIQBWGB2DiZSGphAEUBhAVkY2MyMAIACxYALVlZOREAAAAASUVORK5CYII=")
     local staff_player_image_data = base64_decode("iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADdUAAA3VAT3WWPEAAAAYdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCA1LjEuMvu8A7YAAAC2ZVhJZklJKgAIAAAABQAaAQUAAQAAAEoAAAAbAQUAAQAAAFIAAAAoAQMAAQAAAAIAAAAxAQIAEAAAAFoAAABphwQAAQAAAGoAAAAAAAAAbl8BAOgDAABuXwEA6AMAAFBhaW50Lk5FVCA1LjEuMgADAACQBwAEAAAAMDIzMAGgAwABAAAAAQAAAAWgBAABAAAAlAAAAAAAAAACAAEAAgAEAAAAUjk4AAIABwAEAAAAMDEwMAAAAADGgMOKJmQafQAAAE5JREFUKFOVjsEOgDAMQsdu/v/HetTRoKm0yeI7lI4UsuFcQs+XKd0CaeBNWGj9kg9LiCObT4t7//6Y0x1sRHN0SE9pUA4Zphafw00HAG7iXzDzhK35MgAAAABJRU5ErkJggg==")
@@ -3893,7 +3841,6 @@ do
     create_connection(players_service["PlayerAdded"], register_player)
     create_connection(players_service["PlayerRemoving"], remove_player)
 
-    -- >> ( auto save friendlies )
 
     do
         local auto_save_offset = vector3_new(0,2.5,0)
@@ -3965,7 +3912,6 @@ do
     end
 end
 
--- > ( world visuals )
 
 do
     local lighting = game:GetService("Lighting")
@@ -4022,7 +3968,6 @@ do
 
     menu_references["lighting_section"] = menu["groups"]["visuals"]:create_section("general", "world", 1, 0.65, 0)
 
-    -- >> ( background noise )
 
     do
         local sounds = {
@@ -4096,7 +4041,6 @@ do
         end)
     end
 
-    -- >> ( lighting mode )
 
     menu_references["lighting_mode"] = menu_references["lighting_section"]:create_element({["name"] = "lighting mode"}, {["toggle"] = {["flag"] = "lighting_mode"}, ["dropdown"] = {["flag"] = "lighting_mode_value", ["options"] = {"compatibility", "shadowmap", "unified", "future", "legacy", "voxel"}, ["default"] = {lighting["Technology"]["Name"]:lower()}, ["requires_one"] = true}})
 
@@ -4140,7 +4084,6 @@ do
         end
     end)
 
-    -- >> ( atmosphere )
 
     menu_references["atmosphere"] = menu_references["lighting_section"]:create_element({["name"] = "atmosphere"}, {["toggle"] = {["flag"] = "atmosphere"}})
         menu_references["atmosphere_settings"] = menu_references["atmosphere"]:create_settings()
@@ -4208,7 +4151,6 @@ do
         end
     end)
 
-    -- >> ( saturation )
 
     local color_correction = find_first_child_of_class(lighting, "ColorCorrectionEffect")
 
@@ -4226,7 +4168,6 @@ do
         end
     end)
 
-    -- >> ( contrast )
 
     menu_references["contrast"] = menu_references["lighting_section"]:create_element({["name"] = "contrast"}, {["toggle"] = {["flag"] = "contrast"}, ["slider"] = {["min"] = -1, ["max"] = 1, ["decimals"] = 2, ["default"] = round(color_correction["Contrast"], 2), ["flag"] = "contrast_value"}})
 
@@ -4242,7 +4183,6 @@ do
         end
     end)
 
-    -- >> ( textures )
 
     local textures_connection = nil
     local material_service = cloneref(game:GetService("MaterialService"))
@@ -4377,7 +4317,6 @@ do
         textures = texture_packs[value]
     end))
 
-    -- >> ( ambient )
 
     menu_references["ambient"] = menu_references["lighting_section"]:create_element({["name"] = "ambient"}, {["toggle"] = {["flag"] = "ambient"}})
         menu_references["ambient_settings"] = menu_references["ambient"]:create_settings()
@@ -4410,7 +4349,6 @@ do
         end
     end)
 
-    -- >> ( weather )
 
     menu_references["weather"] = menu_references["lighting_section"]:create_element({["name"] = "weather"}, {["toggle"] = {["flag"] = "weather"}})
         menu_references["weather_settings"] = menu_references["weather"]:create_settings()
@@ -4562,7 +4500,6 @@ do
         end
     end)
 
-    -- >> ( skybox )
 
     local skyboxes = {
         ["default"] = {
@@ -4661,7 +4598,6 @@ do
         end
     end))
 
-    -- >> ( tint )
 
     menu_references["tint"] = menu_references["lighting_section"]:create_element({["name"] = "tint"}, {["toggle"] = {["flag"] = "tint"}, ["colorpicker"] = {["color_flag"] = "tint_color", ["default_color"] = color_correction["TintColor"], ["transparency_flag"] = "tint_transparency", ["default_transparency"] = 0}})
 
@@ -4678,7 +4614,6 @@ do
     end)
 end
 
--- >> ( game )
 
 do
     local numbersequencekeypointnew = NumberSequenceKeypoint["new"]
@@ -4750,9 +4685,7 @@ do
         menu_references["center_panel_secondary_color"] = menu_references["center_panel_settings"]:create_element({["name"] = "secondary color"}, {["colorpicker"] = {["color_flag"] = "center_panel_secondary_color", ["default_color"] = color3_fromrgb(230, 230, 230), ["default_transparency"] = 0, ["transparency_flag"] = "center_panel_secondary_transparency"}})
         menu_references["aspect_ratio"] = menu_references["hud_section"]:create_element({["name"] = "aspect ratio"}, {["toggle"] = {["flag"] = "aspect_ratio"}, ["slider"] = {["flag"] = "aspect_ratio_value", ["min"] = 0.1, ["max"] = 1.2, ["default"] = 1, ["decimals"] = 2, ["suffix"] = "x"}})
         menu_references["show_chat"] = menu_references["hud_section"]:create_element({["name"] = "show chat"}, {["toggle"] = {["flag"] = "show_chat"}})
-        --menu_references["statistics_window"] = menu_references["hud_section"]:create_element({["name"] = "statistics window"}, {["toggle"] = {["flag"] = "statistics_window"}})
 
-    -- >> show chat
 
     do
         local text_chat_service = cloneref(game["GetService"](game, "TextChatService"))
@@ -4762,7 +4695,6 @@ do
         end)
     end
 
-    -- >> ( aspect ratio )
 
     local multiplier = cframe_new(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
     local last_tween_value = 0
@@ -4836,7 +4768,6 @@ do
         tween_ratio(value)
     end)
 
-    -- >> ( center panel )
 
     do
         local heart_image_data = base64_decode("iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAAYdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCA1LjEuMvu8A7YAAAC2ZVhJZklJKgAIAAAABQAaAQUAAQAAAEoAAAAbAQUAAQAAAFIAAAAoAQMAAQAAAAIAAAAxAQIAEAAAAFoAAABphwQAAQAAAGoAAAAAAAAA2XYBAOgDAADZdgEA6AMAAFBhaW50Lk5FVCA1LjEuMgADAACQBwAEAAAAMDIzMAGgAwABAAAAAQAAAAWgBAABAAAAlAAAAAAAAAACAAEAAgAEAAAAUjk4AAIABwAEAAAAMDEwMAAAAACnKL6u+xXB7AAAAEZJREFUKFONj1sOADAEBOn976xWENVHOglWMh9QQbxAzcQ+RbHAzFgy29CWwgmIw/OTL2m7qVJvChYxBFsaEGHeP3GaQDQBlXYd/dTBOJ0AAAAASUVORK5CYII=")
@@ -5083,7 +5014,6 @@ do
     end
 
 
-    -- >> ( custom crosshair )
 
     do
         local lines = {}
@@ -5388,15 +5318,12 @@ do
         end)
     end
 
-    -- >> ( crosshair animations )
 
     do
-        -- >> ( variables )
 
         local crosshair_animations_tool_added_connection = nil
         local crosshair_animations_update_connection = nil
 
-        -- >> ( fake metatable )
 
         local aim_frame = nil
         local old_metatable = getrawmetatable(game)
@@ -5417,7 +5344,6 @@ do
             end
         end
 
-        -- >> ( core )
 
         local fade_aim_frame = function(show)
             if aim_frame then
@@ -5570,7 +5496,6 @@ do
         end)
     end
 
-    -- >> ( server position indicator )
 
     local visible = false
     local circle = nil
@@ -5827,7 +5752,6 @@ do
     --[[menu_references["rpg_warning"] = menu_references["game_section"]:create_element({["name"] = "rpg warning"}, {["toggle"] = {["flag"] = "rpg_warning"}})
         menu_references["rpg_warning_settings"] = menu_references["rpg_warning"]:create_settings()
         menu_references["hit_overlay_lifetime"] = menu_references["rpg_warning_settings"]:create_element({["name"] = "lifetime"}, {["slider"] = {["flag"] = "hit_overlay_lifetime", ["min"] = 0.1, ["max"] = 0.8, ["default"] = 0.7, ["decimals"] = 1, ["suffix"] = "s", ["prefix"] = ""}})
-    --]]
     menu_references["hit_overlay"] = menu_references["game_section"]:create_element({["name"] = "hit overlay"}, {["toggle"] = {["flag"] = "hit_overlay"}})
         menu_references["hit_overlay_settings"] = menu_references["hit_overlay"]:create_settings()
         menu_references["hit_overlay_lifetime"] = menu_references["hit_overlay_settings"]:create_element({["name"] = "lifetime"}, {["slider"] = {["flag"] = "hit_overlay_lifetime", ["min"] = 0.1, ["max"] = 0.8, ["default"] = 0.7, ["decimals"] = 1, ["suffix"] = "s", ["prefix"] = ""}})
@@ -5838,7 +5762,6 @@ do
         menu_references["hit_sound_value"] = menu_references["hit_sound_settings"]:create_element({["name"] = "sound"}, {["dropdown"] = {["flag"] = "hit_sound_value", ["default"] = {"mc bow"}, ["options"] = {"primordial", "neverlose", "sparkle", "mc bow", "skeet", "break", "rust"}, ["requires_one"] = true, ["use_custom_extensions"] = {"mp3", "ogg", "wav"}}})
         menu_references["hit_sound_volume"] = menu_references["hit_sound_settings"]:create_element({["name"] = "volume"}, {["slider"] = {["flag"] = "hit_sound_volume", ["min"] = 0.1, ["max"] = 5, ["default"] = 1, ["decimals"] = 1}})
 
-    -- >> ( local bullet tracers )
 
     local beams = {
         ["laser"] = create_instance("Beam", {
@@ -6073,7 +5996,6 @@ do
         local_bullet_tracers_beam = beams[value[1]]
     end)
 
-    -- >> ( enemy tracers )
 
     do
         local player_bullet_tracers_on_player_bullet_fired = nil
@@ -6123,7 +6045,6 @@ do
             player_bullet_tracers_beam = beams[value[1]]
         end)
 
-        -- >> ( local bullet impacts )
 
         do
             local local_bullet_impacts_on_local_bullet_fired = nil
@@ -6230,7 +6151,6 @@ do
         end
     end
 
-    -- >> ( shot notifications )
 
     do
         local show_notifications_on_local_bullet_confirmed = nil
@@ -6317,7 +6237,6 @@ do
         end)
     end
 
-    -- >> ( hit skeleton )
 
     do
         local hit_skeleton_on_player_hit = nil
@@ -6721,7 +6640,6 @@ do
         end)
     end
 
-    -- >> ( hit sound )
 
     local hit_sound_connection = nil
     local sound_service = cloneref(game:GetService("SoundService"))
@@ -6781,7 +6699,6 @@ do
         end
     end)
 
-    -- >> ( hit particle )
 
     do
         local hit_particle_part = create_instance("Part", {
@@ -6959,7 +6876,6 @@ do
         end)
     end
 
-    -- >> ( hit overlay )
 
     local hit_overlay_connection = nil
     local data = readfile("Latte recode/assets/1.png")
@@ -7010,7 +6926,6 @@ do
         end
     end)
 
-    -- >> ( damage number )
 
     do
         local damage_number_connection = nil
@@ -7100,7 +7015,6 @@ do
         end)
     end
 
-    -- >> ( 3d hit marker )
 
     do
         local d3_hit_marker_connection = nil
@@ -7224,7 +7138,6 @@ do
         end)
     end
 
-    -- >> ( 2d hit marker )
 
     do
         local d2_hit_marker_connection = nil
@@ -7339,7 +7252,6 @@ do
         end)
     end
 
-    -- >> ( hit chams )
 
     do
         menu_references["hit_chams"] = menu_references["game_section"]:create_element({["name"] = "hit chams"}, {["toggle"] = {["flag"] = "hit_chams"}})
@@ -7613,20 +7525,16 @@ do
         end)
     end
 
-    -- >> ( other visuals )
 
     menu_references["visuals_other_section"] = menu["groups"]["visuals"]:create_section("general", "other", 2, 0.35, 0.65)
 
-    -- >> ( hide crosshair )
 
     do
         menu_references["hide_game_crosshair"] = menu_references["visuals_other_section"]:create_element({["name"] = "hide game crosshair"}, {["toggle"] = {["flag"] = "hide_game_crosshair"}})
 
-        -- >> ( variables )
 
         local crosshair_animations_update_connection = nil
 
-        -- >> ( fake metatable )
 
         local aim_frame = nil
         local old_metatable = getrawmetatable(game)
@@ -7693,7 +7601,6 @@ do
         end)
     end
 
-    -- >> ( disable rendering )
 
     do
         menu_references["disable_rendering"] = menu_references["visuals_other_section"]:create_element({["name"] = "disable rendering"}, {["toggle"] = {["flag"] = "disable_rendering"}})
@@ -7703,7 +7610,6 @@ do
         end))
     end
 
-    -- >> ( motion blur )
 
     do
         local lighting = game:GetService("Lighting")
@@ -7764,7 +7670,6 @@ do
     end
 end
 
--- >> ( skin changer )
 
 do
     local skins_list = {}
@@ -8174,7 +8079,6 @@ do
         end
     end))
 
-    -- >> ( custom skins )
 
     local custom_skins = {}
 
@@ -8369,13 +8273,11 @@ do
 
     menu_references["refresh_custom_skins"]["on_clicked"]:Fire()
 
-    -- >> ( player bullet volume )
 
     create_connection(menu_references["player_bullet_volume"]["on_slider_change"], function(value)
         player_bullet_volume = value ~= 100 and value/100 or nil
     end)
 
-    -- >> ( local bullet sound )
 
     local sounds = {
         ["sexy"] = readfile("Latte recode/assets/sexy.ogg")
@@ -8417,7 +8319,6 @@ do
         local_bullet_volume = value/100
     end)
 
-    -- >> ( custom armor pop )
 
     local images = {
         ["jaydes"] = readfile("Latte recode/assets/jaydes.png"),
@@ -8496,7 +8397,6 @@ do
     end)
 end
 
--- >> ( player visuals )
 
 do
     menu_references["esp_section"] = menu["groups"]["visuals"]:create_section("players", "player esp", 1, 0.6, 0)
@@ -8598,7 +8498,6 @@ do
         menu_references["main_font"] = menu_references["fonts"]:create_element({["name"] = "main font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "main_font", ["default"] = identifyexecutor() == "Wave" and {"1"} or {"2"}}})
         menu_references["small_font"] = menu_references["fonts"]:create_element({["name"] = "small font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "small_font", ["default"] = identifyexecutor() == "Wave" and {"1"} or {"2"}}})
 
-    -- >> ( esp variables )
 
     local offset = vector3_new(0,0.5,0)
     local bar_offset = vector2_new(0, 1)
@@ -8723,7 +8622,6 @@ do
         end
     end
 
-    -- >> ( esp core )
 
     local do_esp = LPH_NO_VIRTUALIZE(function()
         for player, data in player_data do
@@ -9609,7 +9507,6 @@ do
         tween_esp(data, true)
     end)
 
-    -- >> ( show arms in first person)
 
     do
         menu_references["local_character_section"] = menu["groups"]["visuals"]:create_section("players", "local character", 2, 1, 0)
@@ -9678,7 +9575,6 @@ do
         end)
     end
 
-    -- >> ( local material )
 
     menu_references["character_highlight"] = menu_references["local_character_section"]:create_element({["name"] = "character highlight"}, {["toggle"] = {["flag"] = "character_highlight"}})
     menu_references["local_material"] = menu_references["local_character_section"]:create_element({["name"] = "character material"}, {["toggle"] = {["flag"] = "local_material"}})
@@ -9800,7 +9696,6 @@ do
         end)
     end
 
-    -- >> ( esp connections )
 
     do
         local health_text_player_health_changed_connection = nil
@@ -10613,7 +10508,6 @@ do
         end))
     end
 
-    -- >> ( color / transparency updaters )
 
     local statuses = {
         [1] = "",
@@ -11068,7 +10962,6 @@ do
         end))
     end
 
-    -- >> ( other )
 
     menu_references["other_section"] = menu["groups"]["visuals"]:create_section("players", "other", 1, 0.4, 0.6)
         menu_references["name_hide_nametags"] = menu_references["other_section"]:create_element({["name"] = "hide player nametags"}, {["toggle"] = {["flag"] = "name_hide_nametags"}})
@@ -11109,7 +11002,6 @@ do
     end)
 end
 
--- > ( self esp)
 
 do
     local character_highlight_connection = nil
@@ -11361,7 +11253,6 @@ do
         end
     end)
 
-    -- >> ( animated gun )
 
     menu_references["animated_gun"] = menu_references["local_character_section"]:create_element({["name"] = "animated tools"}, {toggle = {flag = "animated_tools", default = false}})
         menu_references["animated_gun_settings"] = menu_references["animated_gun"]:create_settings()
@@ -11498,7 +11389,6 @@ do
         end)
     end
 
-    -- >> ( material tools )
 
     menu_references["material_tools"] = menu_references["local_character_section"]:create_element({["name"] = "material tools"}, {["toggle"] = {["flag"] = "material_tools"}})
         menu_references["material_tools_settings"] = menu_references["material_tools"]:create_settings()
@@ -11610,7 +11500,6 @@ do
         end)
     end
 
-    -- >> ( particle aura )
 
     menu_references["particle_aura"] = menu_references["local_character_section"]:create_element({["name"] = "particle aura"}, {["toggle"] = {["flag"] = "particle_aura"}})
         menu_references["particle_aura_settings"] = menu_references["particle_aura"]:create_settings()
@@ -11816,7 +11705,6 @@ do
     end
 end
 
--- > ( ragebot / hvh )
 
 local backtrack_data = {}
 
@@ -11865,8 +11753,6 @@ do
         menu_references["target_selection_ignore_if"] = menu_references["target_selection_settings"]:create_element({["name"] = "ignore if"}, {["dropdown"] = {["flag"] = "ignore_if", ["options"] = {"invulnerable", "knocked", "in void"}, ["default"] = {"invulnerable"}, ["multi"] = true}})
         menu_references["target_selection_target_distance"] = menu_references["target_selection_settings"]:create_element({["name"] = "target distance"}, {["slider"] = {["flag"] = "target_selection_target_distance", ["default"] = 250, ["max_text"] = "max", ["min"] = 5, ["max"] = 250, ["suffix"] = " studs"}})
     menu_references["visualization_section"] = menu["groups"]["main"]:create_section("ragebot", "visualization", 1, 0.3, 0.7)
-        --menu_references["information_panel"] = menu_references["visualization_section"]:create_element({["name"] = "information panel"}, {["toggle"] = {["flag"] = "information_panel"}})
-        --menu_references["information_panel_settings"] = menu_references["information_panel"]:create_settings()
         menu_references["crosshair_follow"] = menu_references["visualization_section"]:create_element({["name"] = "crosshair follow"}, {["toggle"] = {["flag"] = "crosshair_follow"}})
         menu_references["3d_target_circle"] = menu_references["visualization_section"]:create_element({["name"] = "3d target circle"}, {["toggle"] = {["flag"] = "3d_target_circle"}})
         menu_references["3d_target_circle_settings"] = menu_references["3d_target_circle"]:create_settings()
@@ -11977,8 +11863,6 @@ do
         menu_references["control"] = menu_references["utility_section"]:create_element({["name"] = "control"}, {["toggle"] = {["flag"] = "control", ["default"] = false}})
         menu_references["control_settings"] = menu_references["control"]:create_settings()
         menu_references["control_chat_replies"] = menu_references["control_settings"]:create_element({["name"] = "chat replies"}, {["toggle"] = {["flag"] = "control_chat_replies", ["default"] = true}})
-        --]]
-    -- >> ( ragebot )
 
     local automatic = false
     local do_notification = false
@@ -12338,7 +12222,6 @@ do
         return best, best_hrp
     end)
 
-    -- >> ( main ragebot )
 
     local get_ragebot_target = get_closest_to_mouse_position
 
@@ -12685,7 +12568,6 @@ do
         return is_defensive
     end)
 
-    -- >> ( ragebot setting updaters )
 
     create_connection(menu_references["void_spam_resolver_position_weight"]["on_slider_change"], function(value)
         void_spam_resolver_position_weight = value
@@ -13021,7 +12903,6 @@ do
 
     create_connection(menu_references["ragebot_field_of_view"]["on_slider_change"], update_field_of_view)
 
-    -- >> ( follow target )
     do
         local rad = math["rad"]
         local follow_target_stop_if_target_knocked = true
@@ -13140,7 +13021,6 @@ do
         end)
     end
 
-    -- >> ( rapid fire )
 
     do
         local constant_cache = {}
@@ -13233,7 +13113,6 @@ do
         end)
     end
 
-    -- >> ( sender rate value )
 
     do
         local old = getfflag("S2PhysicsSenderRate")
@@ -13288,7 +13167,6 @@ do
         menu_references["sender_rate_value_rate"]:set_visible(false)
     end
 
-    -- >> ( velocity desync )
 
     do
         local velocity_desync_type = "low"
@@ -13371,7 +13249,6 @@ do
         end)
     end
 
-    -- >> ( network desync )
 
     do
         local do_sleep = true
@@ -13397,7 +13274,6 @@ do
         end)
     end
 
-    -- >> ( fake position )
 
     do
         local refresh_connection = nil
@@ -13570,7 +13446,6 @@ do
             do_notify = value
         end)
 
-        -- >> ( fake position indicator )
 
         local visible = false
         local circle = nil
@@ -13758,7 +13633,6 @@ do
         menu_references["fake_position_indicator_glow_color"]:set_visible(false)
     end
 
-    -- >> ( anti stomp)
 
     do
         local anti_stomp_connection = nil
@@ -13838,7 +13712,6 @@ do
         end)
     end
 
-    -- >> ( anti taser )
 
     do
         local connection = nil
@@ -13922,7 +13795,6 @@ do
         end)
     end
 
-    -- >> ( auto armor )
 
     local threshold = 52
     local last_attempt = clock()
@@ -13959,7 +13831,6 @@ do
         cooldown = value
     end)
 
-    -- >> ( auto heal )
 
     do
         local threshold = 0.7
@@ -14032,7 +13903,6 @@ do
         end)
     end
 
-    -- >> ( auto mask )
 
     do
         local disable_auto_mask_when_not_full_health = false
@@ -14105,7 +13975,6 @@ do
         end)
     end
 
-    -- >> ( target circle )
 
     local lines = {}
     local data = {[11] = 0}
@@ -14201,7 +14070,6 @@ do
         end
     end)
 
-    -- >> ( crosshair follow )
 
     do
         local mid_position = camera["ViewportSize"]/2 - vector2_new(2, 58)
@@ -14297,7 +14165,6 @@ do
         end)
     end
 
-    -- >> ( information panel )
 
    --[[ do
         local panel_visible = nil
@@ -14360,7 +14227,6 @@ do
         end)
     end--]]
 
-    -- >> ( view target )
 
     do
         local view_target_stop_when_knocked = nil
@@ -14401,7 +14267,6 @@ do
         end)
     end
 
-    -- >> ( auto loadout )
 
     do
         local auto_loadout_connection2 = nil
@@ -14518,7 +14383,6 @@ do
         end)
     end
 
-    -- >> ( auto ammo )
 
     do
         local disable_when_target_alive = false
@@ -14568,7 +14432,6 @@ do
         end)
     end
 
-    -- >> ( auto stomp )
 
     do
         local auto_stomp_offset = vector3_new(0,2.3,0)
@@ -14682,7 +14545,6 @@ do
         end)
     end
 
-    -- >> ( void hide )
 
     do
         local last = clock()
@@ -14933,7 +14795,6 @@ do
         end)
     end
 
-    -- > ( auto equip)
 
     do
         local auto_equip_guns = {"[Rifle]"}
@@ -15102,7 +14963,6 @@ do
         end)
     end
 
-    -- > ( look at )
 
     do
         local do_face_target = LPH_NO_VIRTUALIZE(function(dt, hrp)
@@ -15139,7 +14999,6 @@ do
         end)
     end
 
-    -- > ( ragebot tracer )
 
     do
         local tracer = nil
@@ -15291,7 +15150,6 @@ do
         end)
     end
     
-    -- > ( control )
 
     --[[do
         local path = "Latte recode/controllers.json"
@@ -15602,7 +15460,6 @@ do
             commands[name] = nil
         end
 
-        -- >> ( check saved controllers )
 
         if not isfile(path) then
             writefile(path, http_service["JSONEncode"](http_service, {}))
@@ -15627,7 +15484,6 @@ do
             end
         end
 
-        -- >> ( core )
 
         create_connection(menu_references["control"]["on_toggle_change"], function(value)
             for _, connection in connections do
@@ -15655,7 +15511,6 @@ do
     end--]]
 end
 
--- > ( legitbot )
 
 local set_aim_assist_position = nil
 local set_silent_aim_position = nil
@@ -15663,7 +15518,6 @@ local get_silent_aim_position = nil
 local get_backtrack_models = nil
 
 do
-    -- >> ( mouse hook )
 
     local silent_aim_position = nil
     local silent_aim_redirect_chance = 0
@@ -15724,7 +15578,6 @@ do
         return custom_silent_aim_position or silent_aim_position
     end)
 
-    -- >> ( ui )
 
     menu_references["legitbot_settings_section"] = menu["groups"]["main"]:create_section("legitbot", "target selection", 1, 0.57)
         menu_references["legitbot_target_selection_settings"] = menu_references["legitbot_settings_section"]:create_element({["name"] = "settings"}, {})
@@ -15797,7 +15650,6 @@ do
         menu_references["backtrack_color"] = menu_references["backtrack_settings"]:create_element({["name"] = "color"}, {["colorpicker"] = {["color_flag"] = "backtrack_color", ["default_color"] = color3_fromrgb(181, 255, 246), ["default_transparency"] = 0.8, ["transparency_flag"] = "backtrack_transparency"}})
         menu_references["backtrack_material"] = menu_references["backtrack_settings"]:create_element({["name"] = "material"}, {["dropdown"] = {["flag"] = "backtrack_material", ["options"] = {"forcefield", "neon"}, ["default"] = {"neon"}, ["requires_one"] = true}})
 
-    -- >> ( legitbot master )
 
     local legitbot_ignore_if_invulnerable = true
     local legitbot_ignore_if_knocked = true
@@ -16086,7 +15938,6 @@ do
         legitbot_field_of_view = value ~= 180 and value/180 or false
     end)
 
-    -- >> ( aim assist )
 
     local fov_circle = nil
     local fov_circle_outline = nil
@@ -16417,7 +16268,6 @@ do
         end)
     end)
 
-    -- >> ( silent aim )
 
     local viewport_point_to_ray = camera["ViewportPointToRay"]
 
@@ -16636,7 +16486,6 @@ do
         silent_aim_max_distance = value
     end)
 
-    -- >> ( triggerbot )
 
     do
         local viewport_point_to_ray = camera["ViewportPointToRay"]
@@ -16802,7 +16651,6 @@ do
         end)
     end
 
-    -- >> ( reduce shotgun spread )
 
     do
         local func_cache = {}
@@ -16875,7 +16723,6 @@ do
         end)
     end 
 
-    -- >> ( backtrack )
 
     do
         local backtrack_material = Enum["Material"]["Neon"]
@@ -17256,7 +17103,6 @@ do
     end
 end
 
--- > ( finalization )
 
 do
     local data_ping = game:GetService("Stats")["Network"]["ServerStatsItem"]["Data Ping"]
@@ -17359,7 +17205,6 @@ do
     end)
 end
 
--- > ( addons )
 
 do
     local running_image_data = base64_decode("iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURf///wAAAFXC034AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABh0RVh0U29mdHdhcmUAUGFpbnQuTkVUIDUuMS4y+7wDtgAAALZlWElmSUkqAAgAAAAFABoBBQABAAAASgAAABsBBQABAAAAUgAAACgBAwABAAAAAgAAADEBAgAQAAAAWgAAAGmHBAABAAAAagAAAAAAAAAMdwEA6AMAAAx3AQDoAwAAUGFpbnQuTkVUIDUuMS4yAAMAAJAHAAQAAAAwMjMwAaADAAEAAAABAAAABaAEAAEAAACUAAAAAAAAAAIAAQACAAQAAABSOTgAAgAHAAQAAAAwMTAwAAAAAO7qLRjGzAACAAAALElEQVQYV2NgRALoHAYGmAiEA+XCOGAenAPiYucgKwOxoRwwE8xBACQOIyMAHuoAZdtKAY0AAAAASUVORK5CYII=")
@@ -17375,7 +17220,6 @@ do
         })
     end
 
-    -- >> ( addons )
 
     local addon_panel = menu_references["addon_panel"]
     local load_addon = menu_references["load_addon"]
@@ -18106,7 +17950,6 @@ do
     getgenv()["Latte"] = new
 end
 
--- > ( finish loading )
 
 do
     local username = "?"
@@ -18401,7 +18244,6 @@ do
     end
 end
 
--- > ( update data )
 
 do
     local leaderstats = wait_for_child(local_player, "leaderstats", 9e9)
