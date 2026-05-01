@@ -450,9 +450,9 @@ local files = {
     -- > ( drawing proxy )
 
     local drawing_proxy = {}
-    local create1 = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and Drawing["new"] or drawing["new"]
+    local create1 = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and Drawing["new"] or drawing["new"]
 
-    drawing_proxy.new = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and LPH_NO_VIRTUALIZE(function(class, properties)
+    drawing_proxy.new = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and LPH_NO_VIRTUALIZE(function(class, properties)
         local object = create1(class)
 
         local proxy = setmetatable({
@@ -960,7 +960,7 @@ local files = {
         ["Transparency"] = 0,
         ["Visible"] = true,
         ["Parent"] = list_inside,
-        ["Position"] = udim2_new(0, 26, 0, ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 3),
+        ["Position"] = udim2_new(0, 26, 0, (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 3),
         ["ZIndex"] = 12,
     })
 
@@ -1141,7 +1141,7 @@ local files = {
         end
     end
 
-    local offset = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 1 or 2
+    local offset = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 1 or 2
 
     create_connection(on_keybind_created, function(keybind, element)
         local type = keybind["type"]
@@ -2787,11 +2787,11 @@ local files = {
     })
 
     local colorpicker_saturation_dragger = drawing_proxy["new"]("Circle", {
-        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 5 or 6,
+        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 5 or 6,
         ["Color"] = color3_fromrgb(255, 255, 255),
         ["Position"] = udim2_new(0, 159, 0, 4),
         ["Transparency"] = 0,
-        ["Thickness"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 4,
+        ["Thickness"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 4,
         ["Parent"] = colorpicker_saturation,
         ["Visible"] = true,
         ["ZIndex"] = 1002
@@ -2810,11 +2810,11 @@ local files = {
     })
 
     local colorpicker_transparency_dragger = drawing_proxy["new"]("Circle", {
-        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 3 or 5,
+        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 3 or 5,
         ["Color"] = color3_fromrgb(0, 0, 0),
         ["Position"] = udim2_new(0, 4, 0, 4),
         ["Transparency"] = 0,
-        ["Thickness"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 1 or 4,
+        ["Thickness"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 1 or 4,
         ["Filled"] = true,
         ["Parent"] = colorpicker_transparency,
         ["Visible"] = true,
@@ -2822,10 +2822,10 @@ local files = {
     })
 
     local colorpicker_transparency_dragger_overlay = drawing_proxy["new"]("Circle", {
-        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 7,
+        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 7,
         ["Color"] = color3_fromrgb(255, 255, 255),
         ["Transparency"] = 0,
-        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 4,
+        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 4,
         ["Parent"] = colorpicker_transparency_dragger,
         ["Position"] = udim2_new(0, 0, 0, 0),
         ["Visible"] = true,
@@ -2845,11 +2845,11 @@ local files = {
     })
 
     local colorpicker_hue_dragger = drawing_proxy["new"]("Circle", {
-        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 3 or 5,
+        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 3 or 5,
         ["Color"] = color3_fromrgb(255, 255, 255),
         ["Position"] = udim2_new(0, 4, 0, 4),
         ["Transparency"] = 0,
-        ["Thickness"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 4,
+        ["Thickness"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 4,
         ["Parent"] = colorpicker_hue,
         ["Visible"] = true,
         ["ZIndex"] = 1002
@@ -6786,7 +6786,7 @@ local files = {
             })["on_clicked"], function()
                 getgenv()["_latte"]()
 
-                if ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") then
+                if (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") then
                     cleardrawcache()
                 end
             end)
@@ -12851,7 +12851,7 @@ do
         end
     end)
 
-    local create_drawing = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and create_fake_drawing or create_real_drawing
+    local create_drawing = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and create_fake_drawing or create_real_drawing
 
     create_connection(menu_references["smooth_server_position_indicator"]["on_toggle_change"], function(value)
         last_pos = nil
@@ -14229,7 +14229,7 @@ do
         local damage_number_outline_color = color3_fromrgb(15, 15, 15)
         local damage_number_font = 3
         local show_offset = vector3_new(0,1.5,0)
-        local create_drawing = (identifyexecutor() == "Swift" or identifyexecutor() == "Potassium" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and create_fake_drawing or create_real_drawing
+        local create_drawing = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Swift" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Potassium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and create_fake_drawing or create_real_drawing
 
         local do_damage_number = LPH_JIT_MAX(function(player, part, damage, _, message)
             local transparency = -flags["damage_number_transparency"]+1
@@ -15807,8 +15807,8 @@ do
         menu_references["friendly_health_text_color"] = menu_references["health_text_settings"]:create_element({["name"] = "friendly color"}, {["colorpicker"] = {["color_flag"] = "friendly_health_text_color", ["transparency_flag"] = "friendly_health_text_transparency", ["default_color"] = color3_fromrgb(255, 255, 255), ["default_transparency"] = 0}})
 
     menu_references["fonts"] = menu_references["esp_section"]:create_element({["name"] = "fonts"}, {}):create_settings()
-        menu_references["main_font"] = menu_references["fonts"]:create_element({["name"] = "main font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "main_font", ["default"] = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and {"1"} or {"3"}}})
-        menu_references["small_font"] = menu_references["fonts"]:create_element({["name"] = "small font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "small_font", ["default"] = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and {"1"} or {"3"}}})
+        menu_references["main_font"] = menu_references["fonts"]:create_element({["name"] = "main font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "main_font", ["default"] = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and {"1"} or {"3"}}})
+        menu_references["small_font"] = menu_references["fonts"]:create_element({["name"] = "small font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "small_font", ["default"] = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and {"1"} or {"3"}}})
 
     -- >> ( esp variables )
 
@@ -15850,10 +15850,10 @@ do
         local material_value = Enum["Material"]["Neon"]
     local material_attribute = tostring({}):sub(math_random(8,12))
 
-    local main_font = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and 1 or 2
-    local main_size = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and 13 or 13
-    local small_font = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and 1 or 2
-    local small_size = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and 13 or 11
+    local main_font = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and 1 or 2
+    local main_size = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and 13 or 13
+    local small_font = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and 1 or 2
+    local small_size = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and 13 or 11
 
     local transparencies = {
         [1] = {
@@ -16561,7 +16561,7 @@ do
         end
     end)
 
-    local create_tool_icon = (identifyexecutor() == "Swift" or identifyexecutor() == "Potassium" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and LPH_NO_VIRTUALIZE(function(data)
+    local create_tool_icon = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Swift" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Potassium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and LPH_NO_VIRTUALIZE(function(data)
         if data[2] then
             local status = data[1]
             local tool = data[13]
@@ -20847,7 +20847,7 @@ do
             end
         end)
     
-        local create_drawing = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and create_fake_drawing or create_real_drawing
+        local create_drawing = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and create_fake_drawing or create_real_drawing
     
         create_connection(menu_references["smooth_fake_position_indicator"]["on_toggle_change"], function(value)
             last_pos = nil
