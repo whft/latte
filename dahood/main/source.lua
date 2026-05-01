@@ -8130,7 +8130,7 @@ local ragebot_force_position = nil
 local in_void = false
 local stomping = false
 
-local real_drawing = getgenv()["Drawing"]
+local real_drawing = getgenv()["Drawing"] or Drawing
 local fake_drawing = getgenv()["fake_drawing"]
 
 local event = replicated_storage["MainEvent"]
