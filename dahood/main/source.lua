@@ -241,26 +241,26 @@ end
 
 local menu = {
     on_config_loaded = signal["new"](),
-    accent = color3_fromrgb(255, 213, 253),
+    accent = color3_fromrgb(255, 170, 255),
     colors = {
-        ["shadow"] = color3_fromrgb(154, 213, 222),
-        ["accent"] = color3_fromrgb(154, 213, 222),
-        ["active_text"] = color3_fromrgb(197, 197, 197),
-        ["keybind_text"] = color3_fromrgb(197, 197, 197),
-        ["border"] = color3_fromrgb(24, 25, 24),
-        ["inactive_text"] = color3_fromrgb(75, 72, 72),
-        ["highlighted"] = color3_fromrgb(51, 65, 70),
-        ["dark_text"] = color3_fromrgb(70, 85, 87),
-        ["image"] = color3_fromrgb(89, 89, 89),
-        ["section"] = color3_fromrgb(6, 6, 6),
-        ["background"] = color3_fromrgb(0, 0, 0),
-        ["success"] = color3_fromrgb(154, 213, 222),
-        ["error"] = color3_fromrgb(39, 60, 96),
-        ["alert"] = color3_fromrgb(30, 51, 61),
-        ["logo"] = color3_fromrgb(154, 213, 222),
-        ["latte"] = color3_fromrgb(154, 213, 222),
-        ["build"] = color3_fromrgb(154, 213, 222),
-        ["cursor"] = color3_fromrgb(154, 213, 222),
+        ["shadow"] = color3_fromrgb(255, 170, 255),
+        ["accent"] = color3_fromrgb(255, 170, 255),
+        ["active_text"] = color3_fromrgb(255, 255, 255),
+        ["keybind_text"] = color3_fromrgb(200, 200, 200),
+        ["border"] = color3_fromrgb(25, 25, 25),
+        ["inactive_text"] = color3_fromrgb(120, 120, 120),
+        ["highlighted"] = color3_fromrgb(45, 45, 45),
+        ["dark_text"] = color3_fromrgb(80, 80, 80),
+        ["image"] = color3_fromrgb(255, 170, 255),
+        ["section"] = color3_fromrgb(12, 12, 12),
+        ["background"] = color3_fromrgb(8, 8, 8),
+        ["success"] = color3_fromrgb(255, 170, 255),
+        ["error"] = color3_fromrgb(200, 50, 50),
+        ["alert"] = color3_fromrgb(255, 170, 255),
+        ["logo"] = color3_fromrgb(255, 170, 255),
+        ["latte"] = color3_fromrgb(255, 170, 255),
+        ["build"] = color3_fromrgb(255, 170, 255),
+        ["cursor"] = color3_fromrgb(255, 170, 255),
     },
     settings = {},
     notifications = {},
@@ -12851,7 +12851,7 @@ do
         end
     end)
 
-    local create_drawing = identifyexecutor() == "Wave" and create_fake_drawing or create_real_drawing
+    local create_drawing = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and create_fake_drawing or create_real_drawing
 
     create_connection(menu_references["smooth_server_position_indicator"]["on_toggle_change"], function(value)
         last_pos = nil
@@ -14229,7 +14229,7 @@ do
         local damage_number_outline_color = color3_fromrgb(15, 15, 15)
         local damage_number_font = 3
         local show_offset = vector3_new(0,1.5,0)
-        local create_drawing = (identifyexecutor() == "Swift" or identifyexecutor() == "Potassium") and create_fake_drawing or create_real_drawing
+        local create_drawing = (identifyexecutor() == "Swift" or identifyexecutor() == "Potassium" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and create_fake_drawing or create_real_drawing
 
         local do_damage_number = LPH_JIT_MAX(function(player, part, damage, _, message)
             local transparency = -flags["damage_number_transparency"]+1
@@ -15807,8 +15807,8 @@ do
         menu_references["friendly_health_text_color"] = menu_references["health_text_settings"]:create_element({["name"] = "friendly color"}, {["colorpicker"] = {["color_flag"] = "friendly_health_text_color", ["transparency_flag"] = "friendly_health_text_transparency", ["default_color"] = color3_fromrgb(255, 255, 255), ["default_transparency"] = 0}})
 
     menu_references["fonts"] = menu_references["esp_section"]:create_element({["name"] = "fonts"}, {}):create_settings()
-        menu_references["main_font"] = menu_references["fonts"]:create_element({["name"] = "main font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "main_font", ["default"] = identifyexecutor() == "Wave" and {"1"} or {"3"}}})
-        menu_references["small_font"] = menu_references["fonts"]:create_element({["name"] = "small font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "small_font", ["default"] = identifyexecutor() == "Wave" and {"1"} or {"3"}}})
+        menu_references["main_font"] = menu_references["fonts"]:create_element({["name"] = "main font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "main_font", ["default"] = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and {"1"} or {"3"}}})
+        menu_references["small_font"] = menu_references["fonts"]:create_element({["name"] = "small font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "small_font", ["default"] = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and {"1"} or {"3"}}})
 
     -- >> ( esp variables )
 
@@ -15850,10 +15850,10 @@ do
         local material_value = Enum["Material"]["Neon"]
     local material_attribute = tostring({}):sub(math_random(8,12))
 
-    local main_font = identifyexecutor() == "Wave" and 1 or 2
-    local main_size = identifyexecutor() == "Wave" and 13 or 13
-    local small_font = identifyexecutor() == "Wave" and 1 or 2
-    local small_size = identifyexecutor() == "Wave" and 13 or 11
+    local main_font = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and 1 or 2
+    local main_size = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and 13 or 13
+    local small_font = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and 1 or 2
+    local small_size = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and 13 or 11
 
     local transparencies = {
         [1] = {
@@ -16561,7 +16561,7 @@ do
         end
     end)
 
-    local create_tool_icon = (identifyexecutor() == "Swift" or identifyexecutor() == "Potassium") and LPH_NO_VIRTUALIZE(function(data)
+    local create_tool_icon = (identifyexecutor() == "Swift" or identifyexecutor() == "Potassium" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and LPH_NO_VIRTUALIZE(function(data)
         if data[2] then
             local status = data[1]
             local tool = data[13]
@@ -20847,7 +20847,7 @@ do
             end
         end)
     
-        local create_drawing = identifyexecutor() == "Wave" and create_fake_drawing or create_real_drawing
+        local create_drawing = (identifyexecutor() == "Wave" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") and create_fake_drawing or create_real_drawing
     
         create_connection(menu_references["smooth_fake_position_indicator"]["on_toggle_change"], function(value)
             last_pos = nil
