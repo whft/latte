@@ -24555,7 +24555,7 @@ do
         local hrp = vehicle or local_parts["HumanoidRootPart"]
 
         for i = 1, #heartbeat do
-            heartbeat[i](dt, hrp)
+            spawn(heartbeat[i], dt, hrp)
         end
 
         if hrp then
@@ -24565,12 +24565,12 @@ do
         for i = 1, #anti_aim do
             local func = anti_aim[i]
             if func then
-                func(dt, hrp)
+                spawn(func, dt, hrp)
             end
         end
 
         if hrp then
-            update_server_position(hrp)
+            spawn(update_server_position, hrp)
         end
     end))
 
