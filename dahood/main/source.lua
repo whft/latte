@@ -450,9 +450,9 @@ local files = {
     -- > ( drawing proxy )
 
     local drawing_proxy = {}
-    local create1 = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and Drawing["new"] or drawing["new"]
+    local create1 = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and Drawing["new"] or drawing["new"]
 
-    drawing_proxy.new = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and LPH_NO_VIRTUALIZE(function(class, properties)
+    drawing_proxy.new = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and LPH_NO_VIRTUALIZE(function(class, properties)
         local object = create1(class)
 
         local proxy = setmetatable({
@@ -960,7 +960,7 @@ local files = {
         ["Transparency"] = 0,
         ["Visible"] = true,
         ["Parent"] = list_inside,
-        ["Position"] = udim2_new(0, 26, 0, ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 2 or 3),
+        ["Position"] = udim2_new(0, 26, 0, ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 3),
         ["ZIndex"] = 12,
     })
 
@@ -1141,7 +1141,7 @@ local files = {
         end
     end
 
-    local offset = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 1 or 2
+    local offset = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 1 or 2
 
     create_connection(on_keybind_created, function(keybind, element)
         local type = keybind["type"]
@@ -2787,11 +2787,11 @@ local files = {
     })
 
     local colorpicker_saturation_dragger = drawing_proxy["new"]("Circle", {
-        ["Radius"] = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 5 or 6,
+        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 5 or 6,
         ["Color"] = color3_fromrgb(255, 255, 255),
         ["Position"] = udim2_new(0, 159, 0, 4),
         ["Transparency"] = 0,
-        ["Thickness"] = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 2 or 4,
+        ["Thickness"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 4,
         ["Parent"] = colorpicker_saturation,
         ["Visible"] = true,
         ["ZIndex"] = 1002
@@ -2810,11 +2810,11 @@ local files = {
     })
 
     local colorpicker_transparency_dragger = drawing_proxy["new"]("Circle", {
-        ["Radius"] = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 3 or 5,
+        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 3 or 5,
         ["Color"] = color3_fromrgb(0, 0, 0),
         ["Position"] = udim2_new(0, 4, 0, 4),
         ["Transparency"] = 0,
-        ["Thickness"] = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 1 or 4,
+        ["Thickness"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 1 or 4,
         ["Filled"] = true,
         ["Parent"] = colorpicker_transparency,
         ["Visible"] = true,
@@ -2822,10 +2822,10 @@ local files = {
     })
 
     local colorpicker_transparency_dragger_overlay = drawing_proxy["new"]("Circle", {
-        ["Radius"] = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 2 or 7,
+        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 7,
         ["Color"] = color3_fromrgb(255, 255, 255),
         ["Transparency"] = 0,
-        ["Radius"] = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 2 or 4,
+        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 4,
         ["Parent"] = colorpicker_transparency_dragger,
         ["Position"] = udim2_new(0, 0, 0, 0),
         ["Visible"] = true,
@@ -2845,11 +2845,11 @@ local files = {
     })
 
     local colorpicker_hue_dragger = drawing_proxy["new"]("Circle", {
-        ["Radius"] = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 3 or 5,
+        ["Radius"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 3 or 5,
         ["Color"] = color3_fromrgb(255, 255, 255),
         ["Position"] = udim2_new(0, 4, 0, 4),
         ["Transparency"] = 0,
-        ["Thickness"] = ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") and 2 or 4,
+        ["Thickness"] = ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") and 2 or 4,
         ["Parent"] = colorpicker_hue,
         ["Visible"] = true,
         ["ZIndex"] = 1002
@@ -6786,7 +6786,7 @@ local files = {
             })["on_clicked"], function()
                 getgenv()["_latte"]()
 
-                if ((identifyexecutor() == "AWP" or identifyexecutor() == "Madium" or identifyexecutor() == "Seliware") or identifyexecutor() == "Nihon") then
+                if ((identifyexecutor() == "AWP") or identifyexecutor() == "Nihon") then
                     cleardrawcache()
                 end
             end)
