@@ -372,7 +372,7 @@ do
                 ["sexy.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/sexy.ogg") end,
                 ["jaydes.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/jaydes.png") end,
                 ["1.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/1.png") end,
-                ["2.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/2.png") end,
+                ["kick.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/kick.png") end,
                 ["logo.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/logo.png") end,
                 ["saturation.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/saturation.png") end,
             },
@@ -6830,7 +6830,7 @@ do
                 },
                 ["textbox"] = {
                     ["flag"] = "custom_kick_screen_background",
-                    ["default"] = "2.png"
+                    ["default"] = "kick.png"
                 },
                 ["colorpicker"] = {
                     ["color_flag"] = "custom_kick_screen_color",
@@ -25449,8 +25449,8 @@ do
                     local background = flags["custom_kick_screen_background"]
                     local create_fake_drawing = getgenv()["_PROXY"]["new"]
                     local color = flags["custom_kick_screen_color"]
-                    local path = "latte/"..(background == "2.png" and "assets/2.png" or "custom/"..background)
-                    local data = isfile(path) and readfile(path) or readfile("latte/assets/2.png")
+                    local path = "latte/"..(background == "kick.png" and "assets/kick.png" or "custom/"..background)
+                    local data = isfile(path) and readfile(path) or readfile("latte/assets/kick.png")
                     local message_label = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     local message = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     error["Visible"] = false
