@@ -372,7 +372,7 @@ do
                 ["sexy.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/sexy.ogg") end,
                 ["jaydes.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/jaydes.png") end,
                 ["1.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/1.png") end,
-                ["kick.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/kick.png") end,
+                ["2.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/2.png") end,
                 ["logo.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/logo.png") end,
                 ["saturation.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/saturation.png") end,
             },
@@ -6226,7 +6226,7 @@ do
 
             local config = {
                 ["keybinds"] = keybinds,
-                ["author"] = flags["author"] or LRM_LinkedDiscordID or "Unknown",
+                ["author"] = flags["author"] or local_player["Name"] or "Unknown",
                 ["date"] = os["date"]("%x")
             }
 
@@ -6830,7 +6830,7 @@ do
                 },
                 ["textbox"] = {
                     ["flag"] = "custom_kick_screen_background",
-                    ["default"] = "kick.png"
+                    ["default"] = "2.png"
                 },
                 ["colorpicker"] = {
                     ["color_flag"] = "custom_kick_screen_color",
@@ -7856,31 +7856,10 @@ do
                 config_last_updated:set_info("Text", data["date"])
 
                 local author = data["author"]
-                local username = nil
 
-                if author and tonumber(author) then
-                    local s, data = pcall(function()
-                        local body = request({
-                            ["Url"] = "https://discord-lookup-api-pied.vercel.app/v1/user/"..author,
-                            ["Method"] = "GET",
-                            ["Headers"] = {
-                                ["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                                ["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                                ["Accept-Language"] = "en-US,en;q=0.9",
-                                ["Connection"] = "keep-alive",
-                                ["Referer"] = "https://www.google.com/",
-                                ["DNT"] = "1",
-                                ["Upgrade-Insecure-Requests"] = "1"
-                            }
-                        })
-
-                        if body and body["StatusCode"] == 200 then
-                            return http_service:JSONDecode(body["Body"])
-                        end
-                    end)
-                    username = "jd"
+                if author and author ~= "Unknown" then
                     config_author:set_visible(true)
-                    config_author:set_info("Text", username)
+                    config_author:set_info("Text", author)
                 else
                     config_author:set_visible(false)
                     config_author:set_info("Text", "")
@@ -24572,7 +24551,7 @@ do
         local hrp = vehicle or local_parts["HumanoidRootPart"]
 
         for i = 1, #heartbeat do
-            spawn(heartbeat[i], dt, hrp)
+            heartbeat[i](dt, hrp)
         end
 
         if hrp then
@@ -24582,12 +24561,12 @@ do
         for i = 1, #anti_aim do
             local func = anti_aim[i]
             if func then
-                spawn(func, dt, hrp)
+                func(dt, hrp)
             end
         end
 
         if hrp then
-            spawn(update_server_position, hrp)
+            update_server_position(hrp)
         end
     end))
 
@@ -25382,49 +25361,13 @@ end
 -- > ( finish loading )
 
 do
-    local username = "?"
-    local avatar = nil
-
-    local LRM_LinkedDiscordID = LRM_LinkedDiscordID or "320421345324433418"
-    if LRM_LinkedDiscordID then
-        local s, data = pcall(function()
-            local body = request({
-                ["Url"] = "https://discord-lookup-api-pied.vercel.app/v1/user/"..LRM_LinkedDiscordID,
-                ["Method"] = "GET",
-                ["Headers"] = {
-                    ["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                    ["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    ["Accept-Language"] = "en-US,en;q=0.9",
-                    ["Connection"] = "keep-alive",
-                    ["Referer"] = "https://www.google.com/",
-                    ["DNT"] = "1",
-                    ["Upgrade-Insecure-Requests"] = "1"
-                }
-            })
-
-            if body and body["StatusCode"] == 200 then
-                local username = http_service:JSONDecode(body["Body"])
-
-                if username then
-                    return username
-                end
-            end
-        end)
-
-        username = "jd"
-
-        if username ~= "?" then
-            s, avatar = pcall(function()
-                return game:HttpGet(data["avatar"]["link"])
-            end)
-        end
-    end
+    local username = local_player["Name"] or "?"
 
     new_notification(
         "welcome back to latte, "..username,
         5,
         color3_fromrgb(255, 255, 255),
-        avatar or base64_decode("iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAYdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCA1LjEuMvu8A7YAAAC2ZVhJZklJKgAIAAAABQAaAQUAAQAAAEoAAAAbAQUAAQAAAFIAAAAoAQMAAQAAAAIAAAAxAQIAEAAAAFoAAABphwQAAQAAAGoAAAAAAAAADHcBAOgDAAAMdwEA6AMAAFBhaW50Lk5FVCA1LjEuMgADAACQBwAEAAAAMDIzMAGgAwABAAAAAQAAAAWgBAABAAAAlAAAAAAAAAACAAEAAgAEAAAAUjk4AAIABwAEAAAAMDEwMAAAAADu6i0YxswAAgAAAGBJREFUOE+tkdEOgCAIRdH//+eCO3BG16TWeUEYB5zK7xyKHynNI9g1G01BRJZYDOjqjPpN3G2lG2cpGqIWOWUW89nwFHSPIG95DRNLwypNl6sapcmMqjiemAmPX/ANkROaKkTiEnqHHQAAAABJRU5ErkJggg==")
+        base64_decode("iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAYdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCA1LjEuMvu8A7YAAAC2ZVhJZklJKgAIAAAABQAaAQUAAQAAAEoAAAAbAQUAAQAAAFIAAAAoAQMAAQAAAAIAAAAxAQIAEAAAAFoAAABphwQAAQAAAGoAAAAAAAAADHcBAOgDAAAMdwEA6AMAAFBhaW50Lk5FVCA1LjEuMgADAACQBwAEAAAAMDIzMAGgAwABAAAAAQAAAAWgBAABAAAAlAAAAAAAAAACAAEAAgAEAAAAUjk4AAIABwAEAAAAMDEwMAAAAADu6i0YxswAAgAAAGBJREFUOE+tkdEOgCAIRdH//+eCO3BG16TWeUEYB5zK7xyKHynNI9g1G01BRJZYDOjqjPpN3G2lG2cpGqIWOWUW89nwFHSPIG95DRNLwypNl6sapcmMqjiemAmPX/ANkROaKkTiEnqHHQAAAABJRU5ErkJggg==")
     )
 
     new_notification(
@@ -25449,8 +25392,8 @@ do
                     local background = flags["custom_kick_screen_background"]
                     local create_fake_drawing = getgenv()["_PROXY"]["new"]
                     local color = flags["custom_kick_screen_color"]
-                    local path = "latte/"..(background == "kick.png" and "assets/kick.png" or "custom/"..background)
-                    local data = isfile(path) and readfile(path) or readfile("latte/assets/kick.png")
+                    local path = "latte/"..(background == "2.png" and "assets/2.png" or "custom/"..background)
+                    local data = isfile(path) and readfile(path) or readfile("latte/assets/2.png")
                     local message_label = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     local message = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     error["Visible"] = false
