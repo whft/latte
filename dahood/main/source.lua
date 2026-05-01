@@ -1,4 +1,10 @@
+--> dont make key sys pls
+
 repeat task["wait"]() until game:IsLoaded()
+
+if (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") then
+    cleardrawcache()
+end
 
 -- > ( luraph variables )
 
@@ -9,6 +15,83 @@ if not LPH_OBFUSCATED then
     LPH_NO_UPVALUES = function(...) return ... end
     LPH_JIT = function(...) return ... end
 end
+
+getgenv()["latte"] = {}
+
+-- > ( bypass )
+
+LPH_JIT_MAX(function()
+    if not getgenv().done then
+        local reg = getreg()
+        local connection = reg["RBXScriptConnection"]
+        local signal = reg["RBXScriptSignal"]
+        local gc = getgc(true)
+
+        local connection_count = 0
+
+        for i, v in reg do
+            if typeof(v) == "function" and islclosure(v) then
+                local info = getinfo(v)
+                local _, count = string.gsub(info.source, "%.", "")
+                if count == 1 and not string.find(info.source, "Replicated") then
+                    if getupvalues(v)[2] ~= 26 then
+                        connection_count+=1
+                        reg[i] = function(a) end
+                    end
+                end
+            end
+        end
+
+        --[[if connection_count < 4 then
+            cloneref(game:GetService("Players"))["LocalPlayer"]:Kick("[latte]\nda hood has updated, please wait for latte to update.")
+            task["wait"](9e9) -- << idk if this will yield in luraph ?
+            return
+        end]]
+
+        local function safe_hook_function(old, replace)
+            local fake_old = clonefunction(old)
+
+            local replacements = {}
+
+            for _, v in gc do
+                if typeof(v) == "table" and #v < 2500 then
+                    local index = table.find(v, old)
+
+                    if index then
+                        replacements[v] = index
+                    end
+                end
+            end
+
+            hookfunction(old, replace)
+
+            for _, v in replacements do
+                rawset(_, v, fake_old)
+            end
+
+            return fake_old
+        end
+
+        old = nil; old = safe_hook_function(signal.__index, LPH_NO_UPVALUES(function(self, index)
+            if (index:find("^[Cc]onnect")) and getinfo(3) then
+                local source = getinfo(3).source
+                local _, count = string.gsub(source, "%.", "")
+                if count == 1 and not string.find(source, "Replicated") then
+                    return function()
+                        return setrawmetatable(newproxy(), connection)
+                    end
+                end
+            end
+            return old(self, index)
+        end))
+
+        old2 = nil; old2 = safe_hook_function(cloneref(game["GetService"](game, "UserInputService")).GetFocusedTextBox, newcclosure(LPH_NO_UPVALUES(function()
+            return nil
+        end)))
+
+        getgenv().done = true
+    end
+end)()
 
 -- > ( global cheat variables )
 
@@ -276,62 +359,42 @@ do
     -- > ( file system )
 
     do
-local function safeHttp(url)
-    local ok, res = pcall(function()
-        return game:HttpGet(url)
-    end)
-    if not ok or not res then
-        warn("Failed to fetch:", url)
-        return nil
-    end
-    return res
-end
+        local files = {
+            ["assets"] = {
+                ["api.lua"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/api.lua") end,
+                ["sparkle.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/sparkle.ogg") end,
+                ["skeet.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/skeet.ogg") end,
+                ["neverlose.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/neverlose.ogg") end,
+                ["break.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/break.ogg") end,
+                ["mc bow.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/mc%20bow.ogg") end,
+                ["primordial.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/primordial.ogg") end,
+                ["rust.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/rust.ogg") end,
+                ["sexy.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/sexy.ogg") end,
+                ["jaydes.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/jaydes.png") end,
+                ["1.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/1.png") end,
+                ["2.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/2.png") end,
+                ["logo.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/logo.png") end,
+                ["saturation.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/saturation.png") end,
+            },
+            ["custom"] = {
+                ["textures.json"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/textures.json") end,
+                ["character.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/character.rbxm") end,
+                ["pinksky.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/pinksky.rbxm") end,
+                ["scar.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/scar.ogg") end,
+                ["x hit.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/x%20hit.rbxm") end,
+                ["blossom aura.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/blossom%20aura.rbxm") end,
+                ["spam.json"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/spam.json") end,
+            },
+            ["themes"] = {
+                ["default.th"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/themes/default.th") end,
+            },
+            ["addons"] = {},
+            ["configs"] = {},
+            ["data.dat"] = [[{"notifications":true,"theme":"","favorites":[]}]]
+        }
 
-local function debugRBXM(folder, name, url)
-    local ok, data = pcall(safeHttp, url)
-    if not ok or not data then
-        warn("[RBXM DEBUG] Failed to download:", folder, name, url)
-        return nil
-    end
-    return data  -- always returns string, never a function
-end
-
-local files = {
-    ["assets"] = {
-        ["api.lua"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/api.lua"),
-        ["sparkle.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/sparkle.ogg"),
-        ["skeet.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/skeet.ogg"),
-        ["neverlose.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/neverlose.ogg"),
-        ["break.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/break.ogg"),
-        ["mc bow.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/mc%20bow.ogg"),
-        ["primordial.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/primordial.ogg"),
-        ["rust.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/rust.ogg"),
-        ["sexy.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/sexy.ogg"),
-        ["jaydes.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/jaydes.png"),
-        ["1.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/1.png"),
-        ["kick.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/kick.png"),
-        ["latte_logo.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/latte_logo.png"),
-        ["saturation.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/saturation.png"),
-    },
-    ["custom"] = {
-        ["textures.json"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/textures.json"),
-        ["character.rbxm"] = debugRBXM("custom", "character.rbxm", "https://raw.githubusercontent.com/whft/latte/main/assets/character.rbxm"),
-        ["pinksky.rbxm"] = debugRBXM("custom", "pinksky.rbxm", "https://raw.githubusercontent.com/whft/latte/main/assets/pinksky.rbxm"),
-        ["crunch.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/latte.ogg"),
-        ["scar.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/scar.ogg"),
-        ["x hit.rbxm"] = debugRBXM("custom", "x hit.rbxm", "https://raw.githubusercontent.com/whft/latte/main/assets/x%20hit.rbxm"),
-        ["blossom aura.rbxm"] = debugRBXM("custom", "blossom aura.rbxm", "https://raw.githubusercontent.com/whft/latte/main/assets/blossom%20aura.rbxm"),
-        ["spam.json"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/spam.json"),
-    },
-    ["themes"] = {
-        ["default.th"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/default.th"),
-    },
-    ["addons"] = {},
-    ["configs"] = {},
-    ["data.dat"] = [[{"notifications":true,"theme":"","favorites":[]}]]
-}
-        if not isfolder("latte recode") then
-            makefolder("latte recode")
+        if not isfolder("latte") then
+            makefolder("latte")
         end
 
         local recursive_check
@@ -352,14 +415,14 @@ local files = {
             end
         end
 
-        recursive_check("latte recode/", files)
+        recursive_check("latte/", files)
     end
 
     -- > ( custom drawing )
 
     local drawing = Drawing
     LPH_NO_VIRTUALIZE(function()
-        drawing = _G.FORCE_REAL_DRAWING and Drawing or loadstring(readfile("latte recode/assets/api.lua"))()
+        drawing = loadstring(game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/api.lua"))()
     end)()
 
     getgenv()["fake_drawing"] = drawing
@@ -450,9 +513,9 @@ local files = {
     -- > ( drawing proxy )
 
     local drawing_proxy = {}
-    local create1 = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and Drawing["new"] or drawing["new"]
+    local create1 = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and Drawing["new"] or drawing["new"]
 
-    drawing_proxy.new = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and LPH_NO_VIRTUALIZE(function(class, properties)
+    drawing_proxy.new = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and LPH_NO_VIRTUALIZE(function(class, properties)
         local object = create1(class)
 
         local proxy = setmetatable({
@@ -660,7 +723,7 @@ local files = {
 
     local logo = drawing_proxy["new"]("Image", {
         ["Color"] = menu["colors"]["accent"],
-        ["Data"] = readfile("latte recode/assets/latte_logo.png"),
+        ["Data"] = readfile("latte/assets/logo.png"),
         ["Position"] = udim2_new(0, 15, 0, 15),
         ["Parent"] = inside,
         ["Size"] = udim2_new(0, 35, 0, 35),
@@ -960,7 +1023,7 @@ local files = {
         ["Transparency"] = 0,
         ["Visible"] = true,
         ["Parent"] = list_inside,
-        ["Position"] = udim2_new(0, 26, 0, (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 3),
+        ["Position"] = udim2_new(0, 26, 0, (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 2 or 3),
         ["ZIndex"] = 12,
     })
 
@@ -1107,7 +1170,7 @@ local files = {
 
     function menu:load_theme(theme)
         if theme then
-            local path = "latte recode/themes/"..theme..".th"
+            local path = "latte/themes/"..theme..".th"
             if isfile(path) then
                 local s, data = pcall(function()
                     return http_service:JSONDecode(readfile(path))
@@ -1141,7 +1204,7 @@ local files = {
         end
     end
 
-    local offset = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 1 or 2
+    local offset = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 1 or 2
 
     create_connection(on_keybind_created, function(keybind, element)
         local type = keybind["type"]
@@ -1616,7 +1679,7 @@ local files = {
 
         if menu["saved"] then
             menu["saved"] = false
-            writefile("latte recode/data.dat", http_service:JSONEncode({
+            writefile("latte/data.dat", http_service:JSONEncode({
                 ["notifications"] = do_notifications,
                 ["favorites"] = menu["favorites"],
                 ["theme"] = menu["theme"],
@@ -2441,7 +2504,7 @@ local files = {
                     active["favorited"] = true
                     active["parent"]:add_icon(active["drawings"]["text"]["Text"], star)
 
-                    writefile("latte recode/data.dat", http_service:JSONEncode({
+                    writefile("latte/data.dat", http_service:JSONEncode({
                         ["notifications"] = do_notifications,
                         ["favorites"] = menu["favorites"],
                         ["theme"] = menu["theme"],
@@ -2466,7 +2529,7 @@ local files = {
                     active["parent"]:remove_icon(active["drawings"]["text"]["Text"], star)
                     menu["saved"] = true
 
-                    writefile("latte recode/data.dat", http_service:JSONEncode({
+                    writefile("latte/data.dat", http_service:JSONEncode({
                         ["notifications"] = do_notifications,
                         ["favorites"] = menu["favorites"],
                         ["theme"] = menu["theme"],
@@ -2569,7 +2632,7 @@ local files = {
 
                     active["parent"]:add_icon(active["drawings"]["text"]["Text"], autoload)
 
-                    writefile("latte recode/data.dat", http_service:JSONEncode({
+                    writefile("latte/data.dat", http_service:JSONEncode({
                         ["notifications"] = do_notifications,
                         ["favorites"] = menu["favorites"],
                         ["theme"] = menu["theme"],
@@ -2593,7 +2656,7 @@ local files = {
                     menu["saved"] = true
                     active["parent"]:remove_icon(active["drawings"]["text"]["Text"], autoload)
 
-                    writefile("latte recode/data.dat", http_service:JSONEncode({
+                    writefile("latte/data.dat", http_service:JSONEncode({
                         ["notifications"] = do_notifications,
                         ["favorites"] = menu["favorites"],
                         ["theme"] = menu["theme"],
@@ -2781,17 +2844,17 @@ local files = {
         ["Color"] = color3_fromrgb(255, 0, 0),
         ["Transparency"] = 1,
         ["Rounding"] = 4,
-        ["Data"] = readfile("latte recode/assets/saturation.png"),
+        ["Data"] = readfile("latte/assets/saturation.png"),
         ["ZIndex"] = 1001,
         ["Visible"] = true,
     })
 
     local colorpicker_saturation_dragger = drawing_proxy["new"]("Circle", {
-        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 5 or 6,
+        ["Radius"] = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 5 or 6,
         ["Color"] = color3_fromrgb(255, 255, 255),
         ["Position"] = udim2_new(0, 159, 0, 4),
         ["Transparency"] = 0,
-        ["Thickness"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 4,
+        ["Thickness"] = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 2 or 4,
         ["Parent"] = colorpicker_saturation,
         ["Visible"] = true,
         ["ZIndex"] = 1002
@@ -2810,11 +2873,11 @@ local files = {
     })
 
     local colorpicker_transparency_dragger = drawing_proxy["new"]("Circle", {
-        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 3 or 5,
+        ["Radius"] = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 3 or 5,
         ["Color"] = color3_fromrgb(0, 0, 0),
         ["Position"] = udim2_new(0, 4, 0, 4),
         ["Transparency"] = 0,
-        ["Thickness"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 1 or 4,
+        ["Thickness"] = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 1 or 4,
         ["Filled"] = true,
         ["Parent"] = colorpicker_transparency,
         ["Visible"] = true,
@@ -2822,10 +2885,10 @@ local files = {
     })
 
     local colorpicker_transparency_dragger_overlay = drawing_proxy["new"]("Circle", {
-        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 7,
+        ["Radius"] = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 2 or 7,
         ["Color"] = color3_fromrgb(255, 255, 255),
         ["Transparency"] = 0,
-        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 4,
+        ["Radius"] = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 2 or 4,
         ["Parent"] = colorpicker_transparency_dragger,
         ["Position"] = udim2_new(0, 0, 0, 0),
         ["Visible"] = true,
@@ -2845,11 +2908,11 @@ local files = {
     })
 
     local colorpicker_hue_dragger = drawing_proxy["new"]("Circle", {
-        ["Radius"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 3 or 5,
+        ["Radius"] = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 3 or 5,
         ["Color"] = color3_fromrgb(255, 255, 255),
         ["Position"] = udim2_new(0, 4, 0, 4),
         ["Transparency"] = 0,
-        ["Thickness"] = (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") and 2 or 4,
+        ["Thickness"] = (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") and 2 or 4,
         ["Parent"] = colorpicker_hue,
         ["Visible"] = true,
         ["ZIndex"] = 1002
@@ -4951,7 +5014,7 @@ local files = {
                         new_options[#new_options + 1] = original_options[i]
                     end
 
-                    for _, file in listfiles("latte recode/custom") do
+                    for _, file in listfiles("latte/custom") do
                         local extension = file:match("%.([^%.]+)$")
 
                         if extension then
@@ -4984,7 +5047,7 @@ local files = {
                             new_options[#new_options + 1] = original_options[i]
                         end
     
-                        for _, file in listfiles("latte recode/custom") do
+                        for _, file in listfiles("latte/custom") do
                             local extension = file:match("%.([^%.]+)$")
     
                             if extension then
@@ -6105,7 +6168,7 @@ local files = {
         menu.get_config_list = function()
             local list = {}
 
-            local files = listfiles("latte recode/configs/")
+            local files = listfiles("latte/configs/")
             for _, file in files do
                 if string["match"](file, "%.(.*)") == "cfg" then
                     list[#list+1] = string["sub"](file, 21, #file-4)
@@ -6118,7 +6181,7 @@ local files = {
         menu.get_addon_list = function()
             local list = {}
 
-            local files = listfiles("latte recode/addons/")
+            local files = listfiles("latte/addons/")
             for _, file in files do
                 if string["match"](file, "%.(.*)") == "luau" then
                     list[#list+1] = string["sub"](file, 20, #file-5)
@@ -6131,7 +6194,7 @@ local files = {
         menu.get_skins_list = function()
             local list = {}
 
-            local files = listfiles("latte recode/custom/")
+            local files = listfiles("latte/custom/")
             for _, file in files do
                 if string["match"](file, "%.(.*)") == "skin" then
                     list[#list+1] = string["sub"](file, 20, #file-5)
@@ -6144,7 +6207,7 @@ local files = {
         menu.get_theme_list = function()
             local list = {}
 
-            local files = listfiles("latte recode/themes/")
+            local files = listfiles("latte/themes/")
             for _, file in files do
                 if string["match"](file, "%.(.*)") == "th" then
                     list[#list+1] = string["sub"](file, 20, #file-3)
@@ -6202,7 +6265,7 @@ local files = {
                 end
             end
 
-            writefile("latte recode/configs/"..name..".cfg", encrypt(http_service:JSONEncode(config), "^^^^^^^^^^^^^^^^^^^^"))
+            writefile("latte/configs/"..name..".cfg", encrypt(http_service:JSONEncode(config), "^^^^^^^^^^^^^^^^^^^^"))
         end)
 
         menu["get_config_data"] = LPH_JIT(function(data)
@@ -6224,7 +6287,7 @@ local files = {
                 return
             end
 
-            local path = "latte recode/configs/"..name..".cfg"
+            local path = "latte/configs/"..name..".cfg"
 
             if isfile(path) then
                 local new_flags = menu["get_config_data"](readfile(path))
@@ -6613,7 +6676,7 @@ local files = {
             end
 
             menu["load_addon"] = function(name)
-                local path = "latte recode/addons/"..name..".luau"
+                local path = "latte/addons/"..name..".luau"
 
                 if not isfile(path) then
                     return "file does not exist"
@@ -6786,7 +6849,7 @@ local files = {
             })["on_clicked"], function()
                 getgenv()["_latte"]()
 
-                if (((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "AWP") or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Nihon") then
+                if (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") then
                     cleardrawcache()
                 end
             end)
@@ -7573,7 +7636,7 @@ local files = {
             }, {
                 ["button"] = {}
             })["on_clicked"], function()
-                local file = "latte recode/themes/"..flags["!name"]..".th"
+                local file = "latte/themes/"..flags["!name"]..".th"
                 local data = {}
 
                 local elements = theme_section["elements"]
@@ -7767,7 +7830,7 @@ local files = {
 
         create_connection(config_list["on_selection_change"], function(config)
             local config = config or "AbbbbAzbbbbA12z"
-            local path = "latte recode/configs/"..config..".cfg"
+            local path = "latte/configs/"..config..".cfg"
             local data = nil
             if isfile(path) then
                 data = menu["get_config_data"](readfile(path))
@@ -7874,7 +7937,7 @@ local files = {
 
             if selected_config and tostring(selected_config) and #selected_config > 0 then
                 config_list:remove_item(selected_config)
-                delfile("latte recode/configs/"..selected_config..".cfg")
+                delfile("latte/configs/"..selected_config..".cfg")
                 menu["new_notification"](
                     "successfully deleted config "..selected_config,
                     1
@@ -8000,7 +8063,7 @@ local files = {
         -- >> ( data )
 
         local s, data = pcall(function()
-            return http_service:JSONDecode(readfile("latte recode/data.dat"))
+            return http_service:JSONDecode(readfile("latte/data.dat"))
         end)
 
         if s and data then
@@ -8033,7 +8096,7 @@ local files = {
                 menu_references["config_list"]:add_icon(autoload_config, autoload)
             end
         else
-            writefile("latte recode/data.dat", http_service:JSONEncode({
+            writefile("latte/data.dat", http_service:JSONEncode({
                 ["notifications"] = do_notifications,
                 ["favorites"] = {},
                 ["hide_on_load"] = false,
@@ -8130,7 +8193,7 @@ local ragebot_force_position = nil
 local in_void = false
 local stomping = false
 
-local real_drawing = getgenv()["Drawing"] or Drawing
+local real_drawing = getgenv()["Drawing"]
 local fake_drawing = getgenv()["fake_drawing"]
 
 local event = replicated_storage["MainEvent"]
@@ -9570,7 +9633,7 @@ do
             end)
 
             create_connection(menu_references["trash_talk"]["on_toggle_change"], function(bool)
-                local path = "latte recode/custom/"..flags["trash_talk_list"][1]
+                local path = "latte/custom/"..flags["trash_talk_list"][1]
                 if isfile(path) then 
                     local s, err = pcall(function()
                         trash_talk_list = http_service:JSONDecode(readfile(path))
@@ -9608,7 +9671,7 @@ do
             end)
 
             create_connection(menu_references["trash_talk_list"]["on_dropdown_change"], function(value)
-                local path = "latte recode/custom/"..flags["trash_talk_list"][1]
+                local path = "latte/custom/"..flags["trash_talk_list"][1]
                 if isfile(path) then 
                     local s, err = pcall(function()
                         trash_talk_list = http_service:JSONDecode(readfile(path))
@@ -11282,7 +11345,7 @@ do
             local new_sound = sounds[value]
 
             if not new_sound then
-                local path = "latte recode/custom/"..value
+                local path = "latte/custom/"..value
 
                 if isfile(path) then
                     local s, data = pcall(getcustomasset, path)
@@ -11527,7 +11590,7 @@ do
     end)
 
     local get_textures = LPH_JIT_MAX(function(value)
-        local path = "latte recode/custom/"..value
+        local path = "latte/custom/"..value
 
         if isfile(path) then
             local s, data = pcall(function()
@@ -11864,7 +11927,7 @@ do
         local value = value[1]
 
         if not skyboxes[value] then
-            local new_skybox = game:GetObjects(getcustomasset("latte recode/custom/"..value))[1]
+            local new_skybox = game:GetObjects(getcustomasset("latte/custom/"..value))[1]
             skyboxes[value] = new_skybox
         end
 
@@ -12851,7 +12914,7 @@ do
         end
     end)
 
-    local create_drawing = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and create_fake_drawing or create_real_drawing
+    local create_drawing = identifyexecutor() == "Wave" and create_fake_drawing or create_real_drawing
 
     create_connection(menu_references["smooth_server_position_indicator"]["on_toggle_change"], function(value)
         last_pos = nil
@@ -13004,7 +13067,7 @@ do
         menu_references["local_bullet_sound_sound"] = menu_references["local_bullet_sound_settings"]:create_element({["name"] = "sound"}, {["dropdown"] = {["options"] = {"default", "sexy"}, ["default"] = {"sexy"}, ["requires_one"] = true, ["flag"] = "local_bullet_sound_sound", ["use_custom_extensions"] = {"mp3", "ogg", "wav"}}})
     menu_references["damage_number"] = menu_references["game_section"]:create_element({["name"] = "damage number"}, {["toggle"] = {["flag"] = "damage_number"}})
         menu_references["damage_number_settings"] = menu_references["damage_number"]:create_settings()
-        menu_references["damage_number_font"] = menu_references["damage_number_settings"]:create_element({["name"] = "font"}, {["dropdown"] = {["flag"] = "damage_number_font", ["default"] = {"3"}, ["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true}})
+        menu_references["damage_number_font"] = menu_references["damage_number_settings"]:create_element({["name"] = "font"}, {["dropdown"] = {["flag"] = "damage_number_font", ["default"] = {"2"}, ["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true}})
         menu_references["damage_number_lifetime"] = menu_references["damage_number_settings"]:create_element({["name"] = "lifetime"}, {["slider"] = {["flag"] = "damage_number_lifetime", ["min"] = 0.7, ["max"] = 2, ["default"] = 0.7, ["decimals"] = 1, ["suffix"] = "s", ["prefix"] = ""}})
         menu_references["damage_number_color"] = menu_references["damage_number_settings"]:create_element({["name"] = "color"}, {["colorpicker"] = {["color_flag"] = "damage_number_color", ["transparency_flag"] = "damage_number_transparency", ["default_color"] = color3_fromrgb(255, 255, 255), ["default_transparency"] = 0}})
         menu_references["damage_number_lethal_color"] = menu_references["damage_number_settings"]:create_element({["name"] = "lethal color"}, {["colorpicker"] = {["color_flag"] = "damage_number_lethal_color", ["transparency_flag"] = "damage_number_lethal_transparency", ["default_color"] = color3_fromrgb(255, 55, 55), ["default_transparency"] = 0}})
@@ -13939,13 +14002,13 @@ do
     local sound_service = cloneref(game:GetService("SoundService"))
 
     local hit_sounds = {
-        ["primordial"] = readfile("latte recode/assets/primordial.ogg"),
-        ["neverlose"] = readfile("latte recode/assets/neverlose.ogg"),
-        ["sparkle"] = readfile("latte recode/assets/sparkle.ogg"),
-        ["mc bow"] = readfile("latte recode/assets/mc bow.ogg"),
-        ["break"] = readfile("latte recode/assets/break.ogg"),
-        ["skeet"] = readfile("latte recode/assets/skeet.ogg"),
-        ["rust"] = readfile("latte recode/assets/rust.ogg"),
+        ["primordial"] = readfile("latte/assets/primordial.ogg"),
+        ["neverlose"] = readfile("latte/assets/neverlose.ogg"),
+        ["sparkle"] = readfile("latte/assets/sparkle.ogg"),
+        ["mc bow"] = readfile("latte/assets/mc bow.ogg"),
+        ["break"] = readfile("latte/assets/break.ogg"),
+        ["skeet"] = readfile("latte/assets/skeet.ogg"),
+        ["rust"] = readfile("latte/assets/rust.ogg"),
     }
 
     for _, data in hit_sounds do
@@ -13984,7 +14047,7 @@ do
 
         if new_value and not hit_sound_data then
             local path = tostring({}):sub(math_random(8, 12))..".ogg"
-            writefile(path, readfile("latte recode/custom/"..new_value))
+            writefile(path, readfile("latte/custom/"..new_value))
             local asset = getcustomasset(path)
             hit_sounds[new_value] = asset
             delfile(path)
@@ -14149,7 +14212,7 @@ do
             hit_particle = hit_particles[value]
 
             if not hit_particle then
-                local new_particle = game:GetObjects(getcustomasset("latte recode/custom/"..value))[1]
+                local new_particle = game:GetObjects(getcustomasset("latte/custom/"..value))[1]
                 local children = get_children(new_particle)
                 local new_hit_particle = {}
                 for i = 1, #children do
@@ -14174,7 +14237,7 @@ do
     -- >> ( hit overlay )
 
     local hit_overlay_connection = nil
-    local data = readfile("latte recode/assets/1.png")
+    local data = readfile("latte/assets/1.png")
 
     local hit_image = nil
     local last_hit = clock()
@@ -14227,9 +14290,9 @@ do
     do
         local damage_number_connection = nil
         local damage_number_outline_color = color3_fromrgb(15, 15, 15)
-        local damage_number_font = 3
+        local damage_number_font = 2
         local show_offset = vector3_new(0,1.5,0)
-        local create_drawing = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Swift" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Potassium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and create_fake_drawing or create_real_drawing
+        local create_drawing = (identifyexecutor() == "Swift" or identifyexecutor() == "Potassium") and create_fake_drawing or create_real_drawing
 
         local do_damage_number = LPH_JIT_MAX(function(player, part, damage, _, message)
             local transparency = -flags["damage_number_transparency"]+1
@@ -15427,7 +15490,7 @@ do
         local skins = menu["get_skins_list"]()
         for _, skin in skins do
             local s, data = pcall(function()
-                return http_service:JSONDecode(readfile("latte recode/custom/"..skin..".skin"))
+                return http_service:JSONDecode(readfile("latte/custom/"..skin..".skin"))
             end)
 
             if s then
@@ -15590,7 +15653,7 @@ do
     -- >> ( local bullet sound )
 
     local sounds = {
-        ["sexy"] = readfile("latte recode/assets/sexy.ogg")
+        ["sexy"] = readfile("latte/assets/sexy.ogg")
     }
 
     for _, data in sounds do
@@ -15614,7 +15677,7 @@ do
 
         if not local_bullet_data then
             local path = tostring({}):sub(math_random(8, 12))..".ogg"
-            writefile(path, readfile("latte recode/custom/"..value))
+            writefile(path, readfile("latte/custom/"..value))
             local_bullet_data = getcustomasset(path)
             sounds[value] = local_bullet_data
             delfile(path)
@@ -15632,7 +15695,7 @@ do
     -- >> ( custom armor pop )
 
     local images = {
-        ["jaydes"] = readfile("latte recode/assets/jaydes.png"),
+        ["jaydes"] = readfile("latte/assets/jaydes.png"),
     }
 
     for _, data in images do
@@ -15684,7 +15747,7 @@ do
         armor_pop_data = images[value]
 
         if not armor_pop_data then
-            local new_data = getcustomasset("latte recode/custom/"..value)
+            local new_data = getcustomasset("latte/custom/"..value)
 
             images[value] = new_data
             armor_pop_data = new_data
@@ -15807,8 +15870,8 @@ do
         menu_references["friendly_health_text_color"] = menu_references["health_text_settings"]:create_element({["name"] = "friendly color"}, {["colorpicker"] = {["color_flag"] = "friendly_health_text_color", ["transparency_flag"] = "friendly_health_text_transparency", ["default_color"] = color3_fromrgb(255, 255, 255), ["default_transparency"] = 0}})
 
     menu_references["fonts"] = menu_references["esp_section"]:create_element({["name"] = "fonts"}, {}):create_settings()
-        menu_references["main_font"] = menu_references["fonts"]:create_element({["name"] = "main font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "main_font", ["default"] = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and {"1"} or {"3"}}})
-        menu_references["small_font"] = menu_references["fonts"]:create_element({["name"] = "small font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "small_font", ["default"] = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and {"1"} or {"3"}}})
+        menu_references["main_font"] = menu_references["fonts"]:create_element({["name"] = "main font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "main_font", ["default"] = identifyexecutor() == "Wave" and {"1"} or {"2"}}})
+        menu_references["small_font"] = menu_references["fonts"]:create_element({["name"] = "small font"}, {["dropdown"] = {["options"] = {"0", "1", "2", "3"}, ["requires_one"] = true, ["flag"] = "small_font", ["default"] = identifyexecutor() == "Wave" and {"1"} or {"2"}}})
 
     -- >> ( esp variables )
 
@@ -15850,10 +15913,10 @@ do
         local material_value = Enum["Material"]["Neon"]
     local material_attribute = tostring({}):sub(math_random(8,12))
 
-    local main_font = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and 1 or 2
-    local main_size = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and 13 or 13
-    local small_font = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and 1 or 2
-    local small_size = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and 13 or 11
+    local main_font = identifyexecutor() == "Wave" and 1 or 2
+    local main_size = identifyexecutor() == "Wave" and 13 or 13
+    local small_font = identifyexecutor() == "Wave" and 1 or 2
+    local small_size = identifyexecutor() == "Wave" and 13 or 11
 
     local transparencies = {
         [1] = {
@@ -16561,7 +16624,7 @@ do
         end
     end)
 
-    local create_tool_icon = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Swift" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Potassium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and LPH_NO_VIRTUALIZE(function(data)
+    local create_tool_icon = (identifyexecutor() == "Swift" or identifyexecutor() == "Potassium") and LPH_NO_VIRTUALIZE(function(data)
         if data[2] then
             local status = data[1]
             local tool = data[13]
@@ -17779,7 +17842,7 @@ do
             image_data = selected == "gradient fill" and "iVBORw0KGgoAAAANSUhEUgAAAAEAAABkCAYAAABHLFpgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABTSURBVChTdU/LDsAwCGJu1/3/59rUC5HAhaA8bNHdfwF4LrwbagN3wgakwMVc4ttCTLhxmKjOIma5S5VfiC0TE180R8aRIAJvuJfGGHcsoHoZ6gCUSgTCpTUDpwAAAABJRU5ErkJggg==" or selected == "fill" and "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAMSURBVBhXY/j//z8ABf4C/qc1gYQAAAAASUVORK5CYII=" or ""
 
             if image_data == "" then
-                local path = "latte recode/custom/"..selected
+                local path = "latte/custom/"..selected
 
                 if isfile(path) then
                     image_data = readfile(path)
@@ -18501,7 +18564,7 @@ do
 
     local get_file_description = function(value)
         local value = value or flags["custom_character_file"][1]
-        local file = "latte recode/custom/"..value
+        local file = "latte/custom/"..value
 
         if isfile(file) then
             return game:GetObjects(getcustomasset(file))[1]
@@ -18905,7 +18968,7 @@ do
             if particle_auras[value] then
                 particle_aura = particle_auras[value]
             else
-                local path = "latte recode/custom/"..value
+                local path = "latte/custom/"..value
 
                 if isfile(path) then
                     local obj = game:GetObjects(getcustomasset(path))[1]
@@ -19222,7 +19285,7 @@ do
     local fov_circle_outline = nil
     local shoot = nil
 
-    do
+    --[[do
         for _, new_upvalue in getupvalues(rawget(require(replicated_storage["Modules"]["GunHandler"]), "shoot")) do
             if type(new_upvalue) == "function" and getinfo(new_upvalue) and getinfo(new_upvalue)["name"] == "shoot" then
                 shoot = new_upvalue
@@ -19231,9 +19294,10 @@ do
         end
 
         if not shoot or not getinfo(shoot).source:find("Gun") then
+            local_player:Kick("Please rejoin.")
             return
         end
-    end
+    end]]
 
     local get_closest_to_mouse_position = LPH_NO_VIRTUALIZE(function(dt, hrp)
         local mouse_pos = get_mouse_location(user_input_service)
@@ -20847,7 +20911,7 @@ do
             end
         end)
     
-        local create_drawing = ((type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Wave" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Madium" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Seliware" or (type(identifyexecutor) == "function" and identifyexecutor() or "Unknown") == "Unknown") and create_fake_drawing or create_real_drawing
+        local create_drawing = identifyexecutor() == "Wave" and create_fake_drawing or create_real_drawing
     
         create_connection(menu_references["smooth_fake_position_indicator"]["on_toggle_change"], function(value)
             last_pos = nil
@@ -22503,7 +22567,7 @@ do
     -- > ( control )
 
     --[[do
-        local path = "latte recode/controllers.json"
+        local path = "latte/controllers.json"
         local current_controllers = {}
         local controller_user_ids = {}
         local connections = {}
@@ -24595,7 +24659,7 @@ do
 
         create_connection(addon_list["on_selection_change"], function(addon)
             local addon = addon or ""
-            local path = "latte recode/addons/"..addon..".luau"
+            local path = "latte/addons/"..addon..".luau"
 
             if addon ~= "" and isfile(path) then
                 if addon_data[addon] then
@@ -24991,7 +25055,7 @@ do
                 return
             end
 
-            if isfile("latte recode/configs/"..string..".cfg") then
+            if isfile("latte/configs/"..string..".cfg") then
                 menu["load_config"](string)
             else
                 error("latte: load_config expected string got "..type)
@@ -25385,8 +25449,8 @@ do
                     local background = flags["custom_kick_screen_background"]
                     local create_fake_drawing = getgenv()["_PROXY"]["new"]
                     local color = flags["custom_kick_screen_color"]
-                    local path = "latte recode/"..(background == "2.png" and "assets/2.png" or "custom/"..background)
-                    local data = isfile(path) and readfile(path) or readfile("latte recode/assets/2.png")
+                    local path = "latte/"..(background == "2.png" and "assets/2.png" or "custom/"..background)
+                    local data = isfile(path) and readfile(path) or readfile("latte/assets/2.png")
                     local message_label = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     local message = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     error["Visible"] = false
@@ -25425,7 +25489,7 @@ do
                         ["Color"] = color3_fromrgb(255, 255, 255),
                         ["Size"] = udim2_new(0, 100, 0, 100),
                         ["Position"] = udim2_new(0.5, -50, 0.45, -50),
-                        ["Data"] = readfile("latte recode/assets/latte_logo.png"),
+                        ["Data"] = readfile("latte/assets/logo.png"),
                         ["Transparency"] = 0,
                         ["Parent"] = background,
                         ["Visible"] = true,
@@ -25604,7 +25668,7 @@ do
     end))
 
     local autoload = menu["autoload"]
-    if autoload and isfile("latte recode/configs/"..autoload..".cfg") then
+    if autoload and isfile("latte/configs/"..autoload..".cfg") then
         spawn(menu["load_config"], autoload)
         menu["new_notification"]("autoloaded config "..autoload, 1)
     end
