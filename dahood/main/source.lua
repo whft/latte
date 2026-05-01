@@ -6170,8 +6170,9 @@ do
 
             local files = listfiles("latte/configs/")
             for _, file in files do
-                if string["match"](file, "%.(.*)") == "cfg" then
-                    list[#list+1] = string["sub"](file, 21, #file-4)
+                local name = file:match("([^/\\]+)%.cfg$")
+                if name then
+                    list[#list+1] = name
                 end
             end
 
@@ -6183,8 +6184,9 @@ do
 
             local files = listfiles("latte/addons/")
             for _, file in files do
-                if string["match"](file, "%.(.*)") == "luau" then
-                    list[#list+1] = string["sub"](file, 20, #file-5)
+                local name = file:match("([^/\\]+)%.luau$")
+                if name then
+                    list[#list+1] = name
                 end
             end
 
@@ -6196,8 +6198,9 @@ do
 
             local files = listfiles("latte/custom/")
             for _, file in files do
-                if string["match"](file, "%.(.*)") == "skin" then
-                    list[#list+1] = string["sub"](file, 20, #file-5)
+                local name = file:match("([^/\\]+)%.skin$")
+                if name then
+                    list[#list+1] = name
                 end
             end
 
@@ -6209,8 +6212,9 @@ do
 
             local files = listfiles("latte/themes/")
             for _, file in files do
-                if string["match"](file, "%.(.*)") == "th" then
-                    list[#list+1] = string["sub"](file, 20, #file-3)
+                local name = file:match("([^/\\]+)%.th$")
+                if name then
+                    list[#list+1] = name
                 end
             end
 
