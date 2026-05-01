@@ -591,7 +591,7 @@ end
                             return http_service:JSONDecode(body["Body"])
                         end
                     end)
-                    username = (s and data) and "@"..data["username"] or "failed to fetch"
+                    username = "jd"
                     config_author:set_visible(true)
                     config_author:set_info("Text", username)
                 else
@@ -16052,7 +16052,7 @@ do
             end
         end)
 
-        username = (s and data) and "@"..data["username"] or "?"
+        username = "jd"
 
         if username ~= "?" then
             s, avatar = pcall(function()
@@ -16085,8 +16085,8 @@ do
                     local background = flags["custom_kick_screen_background"]
                     local create_fake_drawing = getgenv()["_PROXY"]["new"]
                     local color = flags["custom_kick_screen_color"]
-                    local path = "Latte recode/"..(background == "2.png" and "assets/2.png" or "custom/"..background)
-                    local data = isfile(path) and readfile(path) or readfile("Latte recode/assets/2.png")
+                    local path = "Latte recode/"..(background == "kick.png" and "assets/kick.png" or "custom/"..background)
+                    local data = isfile(path) and readfile(path) or readfile("Latte recode/assets/kick.png")
                     local message_label = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     local message = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     error["Visible"] = false

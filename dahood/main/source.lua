@@ -7878,7 +7878,7 @@ do
                             return http_service:JSONDecode(body["Body"])
                         end
                     end)
-                    username = (s and data) and "@"..data["username"] or "failed to fetch"
+                    username = "jd"
                     config_author:set_visible(true)
                     config_author:set_info("Text", username)
                 else
