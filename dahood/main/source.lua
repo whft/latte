@@ -16,7 +16,7 @@ if not LPH_OBFUSCATED then
     LPH_JIT = function(...) return ... end
 end
 
-getgenv()["latte"] = {}
+getgenv()["aarushi"] = {}
 
 -- > ( bypass )
 
@@ -43,7 +43,7 @@ LPH_JIT_MAX(function()
         end
 
         --[[if connection_count < 4 then
-            cloneref(game:GetService("Players"))["LocalPlayer"]:Kick("[latte]\nda hood has updated, please wait for latte to update.")
+            cloneref(game:GetService("Players"))["LocalPlayer"]:Kick("[aarushi]\nda hood has updated, please wait for aarushi to update.")
             task["wait"](9e9) -- << idk if this will yield in luraph ?
             return
         end]]
@@ -341,7 +341,7 @@ local menu = {
         ["error"] = color3_fromrgb(200, 50, 50),
         ["alert"] = color3_fromrgb(255, 170, 255),
         ["logo"] = color3_fromrgb(255, 170, 255),
-        ["latte"] = color3_fromrgb(255, 170, 255),
+        ["aarushi"] = color3_fromrgb(255, 170, 255),
         ["build"] = color3_fromrgb(255, 170, 255),
         ["cursor"] = color3_fromrgb(255, 170, 255),
     },
@@ -361,40 +361,40 @@ do
     do
         local files = {
             ["assets"] = {
-                ["api.lua"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/api.lua") end,
-                ["sparkle.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/sparkle.ogg") end,
-                ["skeet.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/skeet.ogg") end,
-                ["neverlose.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/neverlose.ogg") end,
-                ["break.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/break.ogg") end,
-                ["mc bow.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/mc%20bow.ogg") end,
-                ["primordial.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/primordial.ogg") end,
-                ["rust.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/rust.ogg") end,
-                ["sexy.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/sexy.ogg") end,
-                ["jaydes.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/jaydes.png") end,
-                ["1.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/1.png") end,
-                ["2.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/2.png") end,
-                ["logo.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/logo.png") end,
-                ["saturation.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/saturation.png") end,
+                ["api.lua"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/api.lua") end,
+                ["sparkle.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/sparkle.ogg") end,
+                ["skeet.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/skeet.ogg") end,
+                ["neverlose.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/neverlose.ogg") end,
+                ["break.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/break.ogg") end,
+                ["mc bow.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/mc%20bow.ogg") end,
+                ["primordial.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/primordial.ogg") end,
+                ["rust.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/rust.ogg") end,
+                ["sexy.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/sexy.ogg") end,
+                ["jaydes.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/jaydes.png") end,
+                ["1.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/1.png") end,
+                ["2.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/2.png") end,
+                ["logo.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/logo.png") end,
+                ["saturation.png"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/saturation.png") end,
             },
             ["custom"] = {
-                ["textures.json"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/textures.json") end,
-                ["character.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/character.rbxm") end,
-                ["pinksky.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/pinksky.rbxm") end,
-                ["scar.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/scar.ogg") end,
-                ["x hit.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/x%20hit.rbxm") end,
-                ["blossom aura.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/blossom%20aura.rbxm") end,
-                ["spam.json"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/custom/spam.json") end,
+                ["textures.json"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/custom/textures.json") end,
+                ["character.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/custom/character.rbxm") end,
+                ["pinksky.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/custom/pinksky.rbxm") end,
+                ["scar.ogg"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/custom/scar.ogg") end,
+                ["x hit.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/custom/x%20hit.rbxm") end,
+                ["blossom aura.rbxm"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/custom/blossom%20aura.rbxm") end,
+                ["spam.json"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/custom/spam.json") end,
             },
             ["themes"] = {
-                ["default.th"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/themes/default.th") end,
+                ["default.th"] = function() return game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/themes/default.th") end,
             },
             ["addons"] = {},
             ["configs"] = {},
             ["data.dat"] = [[{"notifications":true,"theme":"","favorites":[]}]]
         }
 
-        if not isfolder("latte") then
-            makefolder("latte")
+        if not isfolder("aarushi") then
+            makefolder("aarushi")
         end
 
         local recursive_check
@@ -415,14 +415,14 @@ do
             end
         end
 
-        recursive_check("latte/", files)
+        recursive_check("aarushi/", files)
     end
 
     -- > ( custom drawing )
 
     local drawing = Drawing
     LPH_NO_VIRTUALIZE(function()
-        drawing = loadstring(game:HttpGet("https://raw.githubusercontent.com/whft/latte/refs/heads/main/assets/api.lua"))()
+        drawing = loadstring(game:HttpGet("https://raw.githubusercontent.com/whft/aarushi/refs/heads/main/assets/api.lua"))()
     end)()
 
     getgenv()["fake_drawing"] = drawing
@@ -723,7 +723,7 @@ do
 
     local logo = drawing_proxy["new"]("Image", {
         ["Color"] = menu["colors"]["accent"],
-        ["Data"] = readfile("latte/assets/logo.png"),
+        ["Data"] = readfile("aarushi/assets/logo.png"),
         ["Position"] = udim2_new(0, 15, 0, 15),
         ["Parent"] = inside,
         ["Size"] = udim2_new(0, 35, 0, 35),
@@ -731,10 +731,10 @@ do
         ["Transparency"] = 1
     })
 
-    local latte_text = drawing_proxy["new"]("Text", {
+    local aarushi_text = drawing_proxy["new"]("Text", {
         ["Font"] = 1,
         ["Color"] = color3_fromrgb(255, 255, 255),
-        ["Text"] = "latte",
+        ["Text"] = "aarushi",
         ["Parent"] = logo,
         ["Position"] = udim2_new(1, 5, 0, 3),
         ["Size"] = 14,
@@ -1170,7 +1170,7 @@ do
 
     function menu:load_theme(theme)
         if theme then
-            local path = "latte/themes/"..theme..".th"
+            local path = "aarushi/themes/"..theme..".th"
             if isfile(path) then
                 local s, data = pcall(function()
                     return http_service:JSONDecode(readfile(path))
@@ -1679,7 +1679,7 @@ do
 
         if menu["saved"] then
             menu["saved"] = false
-            writefile("latte/data.dat", http_service:JSONEncode({
+            writefile("aarushi/data.dat", http_service:JSONEncode({
                 ["notifications"] = do_notifications,
                 ["favorites"] = menu["favorites"],
                 ["theme"] = menu["theme"],
@@ -2504,7 +2504,7 @@ do
                     active["favorited"] = true
                     active["parent"]:add_icon(active["drawings"]["text"]["Text"], star)
 
-                    writefile("latte/data.dat", http_service:JSONEncode({
+                    writefile("aarushi/data.dat", http_service:JSONEncode({
                         ["notifications"] = do_notifications,
                         ["favorites"] = menu["favorites"],
                         ["theme"] = menu["theme"],
@@ -2529,7 +2529,7 @@ do
                     active["parent"]:remove_icon(active["drawings"]["text"]["Text"], star)
                     menu["saved"] = true
 
-                    writefile("latte/data.dat", http_service:JSONEncode({
+                    writefile("aarushi/data.dat", http_service:JSONEncode({
                         ["notifications"] = do_notifications,
                         ["favorites"] = menu["favorites"],
                         ["theme"] = menu["theme"],
@@ -2632,7 +2632,7 @@ do
 
                     active["parent"]:add_icon(active["drawings"]["text"]["Text"], autoload)
 
-                    writefile("latte/data.dat", http_service:JSONEncode({
+                    writefile("aarushi/data.dat", http_service:JSONEncode({
                         ["notifications"] = do_notifications,
                         ["favorites"] = menu["favorites"],
                         ["theme"] = menu["theme"],
@@ -2656,7 +2656,7 @@ do
                     menu["saved"] = true
                     active["parent"]:remove_icon(active["drawings"]["text"]["Text"], autoload)
 
-                    writefile("latte/data.dat", http_service:JSONEncode({
+                    writefile("aarushi/data.dat", http_service:JSONEncode({
                         ["notifications"] = do_notifications,
                         ["favorites"] = menu["favorites"],
                         ["theme"] = menu["theme"],
@@ -2844,7 +2844,7 @@ do
         ["Color"] = color3_fromrgb(255, 0, 0),
         ["Transparency"] = 1,
         ["Rounding"] = 4,
-        ["Data"] = readfile("latte/assets/saturation.png"),
+        ["Data"] = readfile("aarushi/assets/saturation.png"),
         ["ZIndex"] = 1001,
         ["Visible"] = true,
     })
@@ -3582,7 +3582,7 @@ do
         tween(frame, transparency, exponential, out, 0.18)
         tween(inside, transparency, exponential, out, 0.18)
         tween(logo, transparency, exponential, out, 0.18)
-        tween(latte_text, transparency, exponential, out, 0.18)
+        tween(aarushi_text, transparency, exponential, out, 0.18)
         tween(build_text, transparency, exponential, out, 0.18)
         tween(right_side, transparency, exponential, out, 0.18)
         tween(right_side_divider, transparency, exponential, out, 0.18)
@@ -5014,7 +5014,7 @@ do
                         new_options[#new_options + 1] = original_options[i]
                     end
 
-                    for _, file in listfiles("latte/custom") do
+                    for _, file in listfiles("aarushi/custom") do
                         local extension = file:match("%.([^%.]+)$")
 
                         if extension then
@@ -5047,7 +5047,7 @@ do
                             new_options[#new_options + 1] = original_options[i]
                         end
     
-                        for _, file in listfiles("latte/custom") do
+                        for _, file in listfiles("aarushi/custom") do
                             local extension = file:match("%.([^%.]+)$")
     
                             if extension then
@@ -6168,7 +6168,7 @@ do
         menu.get_config_list = function()
             local list = {}
 
-            local files = listfiles("latte/configs/")
+            local files = listfiles("aarushi/configs/")
             for _, file in files do
                 local name = file:match("([^/\\]+)%.cfg$")
                 if name then
@@ -6182,7 +6182,7 @@ do
         menu.get_addon_list = function()
             local list = {}
 
-            local files = listfiles("latte/addons/")
+            local files = listfiles("aarushi/addons/")
             for _, file in files do
                 local name = file:match("([^/\\]+)%.luau$")
                 if name then
@@ -6196,7 +6196,7 @@ do
         menu.get_skins_list = function()
             local list = {}
 
-            local files = listfiles("latte/custom/")
+            local files = listfiles("aarushi/custom/")
             for _, file in files do
                 local name = file:match("([^/\\]+)%.skin$")
                 if name then
@@ -6210,7 +6210,7 @@ do
         menu.get_theme_list = function()
             local list = {}
 
-            local files = listfiles("latte/themes/")
+            local files = listfiles("aarushi/themes/")
             for _, file in files do
                 local name = file:match("([^/\\]+)%.th$")
                 if name then
@@ -6269,7 +6269,7 @@ do
                 end
             end
 
-            writefile("latte/configs/"..name..".cfg", encrypt(http_service:JSONEncode(config), "^^^^^^^^^^^^^^^^^^^^"))
+            writefile("aarushi/configs/"..name..".cfg", encrypt(http_service:JSONEncode(config), "^^^^^^^^^^^^^^^^^^^^"))
         end)
 
         menu["get_config_data"] = LPH_JIT(function(data)
@@ -6291,7 +6291,7 @@ do
                 return
             end
 
-            local path = "latte/configs/"..name..".cfg"
+            local path = "aarushi/configs/"..name..".cfg"
 
             if isfile(path) then
                 local new_flags = menu["get_config_data"](readfile(path))
@@ -6680,7 +6680,7 @@ do
             end
 
             menu["load_addon"] = function(name)
-                local path = "latte/addons/"..name..".luau"
+                local path = "aarushi/addons/"..name..".luau"
 
                 if not isfile(path) then
                     return "file does not exist"
@@ -6693,7 +6693,7 @@ do
                 end)
 
                 if not s then
-                    return "latte: addon "..name.." experienced an error while loading: "..err
+                    return "aarushi: addon "..name.." experienced an error while loading: "..err
                 end
 
                 if addon_data[name] then
@@ -6720,7 +6720,7 @@ do
 
                 if not s then
                     spawn(menu["unload_addon"], name)
-                    error("latte: addon "..name.." experienced an error while loading: "..err)
+                    error("aarushi: addon "..name.." experienced an error while loading: "..err)
                 end
             end
         end
@@ -6845,13 +6845,13 @@ do
             })
 
             create_connection(settings_section:create_element({
-                ["name"] = "unload latte",
+                ["name"] = "unload aarushi",
             }, {
                 ["button"] = {
                     ["confirmation"] = true
                 },
             })["on_clicked"], function()
-                getgenv()["_latte"]()
+                getgenv()["_aarushi"]()
 
                 if (identifyexecutor() == "AWP" or identifyexecutor() == "Nihon") then
                     cleardrawcache()
@@ -6904,17 +6904,17 @@ do
             -- >> ( settings )
 
             create_connection(theme_section:create_element({
-                ["name"] = "latte color",
+                ["name"] = "aarushi color",
             }, {
                 ["colorpicker"] = {
-                    ["default_color"] = menu["colors"]["latte"],
+                    ["default_color"] = menu["colors"]["aarushi"],
                     ["default_transparency"] = 0,
-                    ["transparency_flag"] = "!latte_transparency",
-                    ["color_flag"] = "!latte_color"
+                    ["transparency_flag"] = "!aarushi_transparency",
+                    ["color_flag"] = "!aarushi_color"
                 }
             })["on_color_change"], function(color)
-                menu["colors"]["latte"] = color
-                latte_text["Color"] = color
+                menu["colors"]["aarushi"] = color
+                aarushi_text["Color"] = color
             end)
 
             create_connection(theme_section:create_element({
@@ -7640,7 +7640,7 @@ do
             }, {
                 ["button"] = {}
             })["on_clicked"], function()
-                local file = "latte/themes/"..flags["!name"]..".th"
+                local file = "aarushi/themes/"..flags["!name"]..".th"
                 local data = {}
 
                 local elements = theme_section["elements"]
@@ -7834,7 +7834,7 @@ do
 
         create_connection(config_list["on_selection_change"], function(config)
             local config = config or "AbbbbAzbbbbA12z"
-            local path = "latte/configs/"..config..".cfg"
+            local path = "aarushi/configs/"..config..".cfg"
             local data = nil
             if isfile(path) then
                 data = menu["get_config_data"](readfile(path))
@@ -7920,7 +7920,7 @@ do
 
             if selected_config and tostring(selected_config) and #selected_config > 0 then
                 config_list:remove_item(selected_config)
-                delfile("latte/configs/"..selected_config..".cfg")
+                delfile("aarushi/configs/"..selected_config..".cfg")
                 menu["new_notification"](
                     "successfully deleted config "..selected_config,
                     1
@@ -7974,7 +7974,7 @@ do
     -- > ( loading / unloading )
 
     do
-        local unload = getgenv()["_latte"]
+        local unload = getgenv()["_aarushi"]
 
         if unload then
             unload()
@@ -7996,8 +7996,8 @@ do
 
         getrawmetatable = env["getrawmetatable"]
 
-        env["_latte"] = function()
-            env["_latte"] = nil
+        env["_aarushi"] = function()
+            env["_aarushi"] = nil
 
             for _, group in menu["groups"] do
                 for _, tab in group["tabs"] do
@@ -8046,7 +8046,7 @@ do
         -- >> ( data )
 
         local s, data = pcall(function()
-            return http_service:JSONDecode(readfile("latte/data.dat"))
+            return http_service:JSONDecode(readfile("aarushi/data.dat"))
         end)
 
         if s and data then
@@ -8079,7 +8079,7 @@ do
                 menu_references["config_list"]:add_icon(autoload_config, autoload)
             end
         else
-            writefile("latte/data.dat", http_service:JSONEncode({
+            writefile("aarushi/data.dat", http_service:JSONEncode({
                 ["notifications"] = do_notifications,
                 ["favorites"] = {},
                 ["hide_on_load"] = false,
@@ -9616,7 +9616,7 @@ do
             end)
 
             create_connection(menu_references["trash_talk"]["on_toggle_change"], function(bool)
-                local path = "latte/custom/"..flags["trash_talk_list"][1]
+                local path = "aarushi/custom/"..flags["trash_talk_list"][1]
                 if isfile(path) then 
                     local s, err = pcall(function()
                         trash_talk_list = http_service:JSONDecode(readfile(path))
@@ -9654,7 +9654,7 @@ do
             end)
 
             create_connection(menu_references["trash_talk_list"]["on_dropdown_change"], function(value)
-                local path = "latte/custom/"..flags["trash_talk_list"][1]
+                local path = "aarushi/custom/"..flags["trash_talk_list"][1]
                 if isfile(path) then 
                     local s, err = pcall(function()
                         trash_talk_list = http_service:JSONDecode(readfile(path))
@@ -10394,8 +10394,8 @@ do
                 )
             end
             if do_kick then
-                local_player:Kick("[latte anti staff]\n > detected "..player.." roled as "..role)
-                delay(0, getgenv()["_latte"])
+                local_player:Kick("[aarushi anti staff]\n > detected "..player.." roled as "..role)
+                delay(0, getgenv()["_aarushi"])
             end
         end
     end
@@ -10661,7 +10661,7 @@ do
                 local crew = find_first_child(information, "Crew")
 
                 if crew and #crew["Value"] ~= 0 then
-                    setclipboard("https://www.roblox.com/communities/"..crew["Value"].."#!/latte")
+                    setclipboard("https://www.roblox.com/communities/"..crew["Value"].."#!/aarushi")
 
                     new_notification(
                         "copied "..selected_player["Name"].."'s crew group link to your clipboard",
@@ -10679,7 +10679,7 @@ do
 
     create_connection(player_editor:create_element({["name"] = "copy profile link"}, {["button"] = {}})["on_clicked"], function()
         if selected_player then
-            setclipboard("https://www.roblox.com/users/"..selected_player["UserId"].."/profile#!/latte")
+            setclipboard("https://www.roblox.com/users/"..selected_player["UserId"].."/profile#!/aarushi")
             new_notification(
                 "copied "..selected_player["Name"].."'s profile link to your clipboard",
                 1
@@ -11328,7 +11328,7 @@ do
             local new_sound = sounds[value]
 
             if not new_sound then
-                local path = "latte/custom/"..value
+                local path = "aarushi/custom/"..value
 
                 if isfile(path) then
                     local s, data = pcall(getcustomasset, path)
@@ -11573,7 +11573,7 @@ do
     end)
 
     local get_textures = LPH_JIT_MAX(function(value)
-        local path = "latte/custom/"..value
+        local path = "aarushi/custom/"..value
 
         if isfile(path) then
             local s, data = pcall(function()
@@ -11910,7 +11910,7 @@ do
         local value = value[1]
 
         if not skyboxes[value] then
-            local new_skybox = game:GetObjects(getcustomasset("latte/custom/"..value))[1]
+            local new_skybox = game:GetObjects(getcustomasset("aarushi/custom/"..value))[1]
             skyboxes[value] = new_skybox
         end
 
@@ -12117,18 +12117,18 @@ do
             local x_size = screen_size["X"] - 4
             local y_size = screen_size["Y"] - 2
 
-            local latte_textbounds = text["TextBounds"]
+            local aarushi_textbounds = text["TextBounds"]
             local build_textbounds = text2["TextBounds"]
 
-            local total_size = latte_textbounds["X"] + build_textbounds["X"] + 13
+            local total_size = aarushi_textbounds["X"] + build_textbounds["X"] + 13
             local do_offset = user_input_service["MouseBehavior"] ~= Enum["MouseBehavior"]["Default"]
             local offset = do_offset and total_size/2 + 5 or 0
 
-            y_size = do_offset and y_size + 5 or y_size - latte_textbounds["Y"]/2
+            y_size = do_offset and y_size + 5 or y_size - aarushi_textbounds["Y"]/2
 
             local shadow_size = floor(total_size/11)
 
-            local new_text_position = vector2_new(x_size - latte_textbounds["X"] + offset - 3, y_size + 1)
+            local new_text_position = vector2_new(x_size - aarushi_textbounds["X"] + offset - 3, y_size + 1)
             local new_text2_position = vector2_new(x_size + 12 + offset, y_size + 1)
             local new_heart_position = vector2_new(x_size + offset, y_size + 3)
             local new_text3_position = vector2_new(x_size + offset + 5, y_size + 14)
@@ -12243,7 +12243,7 @@ do
                     ["Transparency"] = 0,
                     ["ZIndex"] = 2,
                     ["Visible"] = true,
-                    ["Text"] = "latte",
+                    ["Text"] = "aarushi",
                     ["Size"] = 12,
                     ["Font"] = 2,
                     ["Outline"] = true,
@@ -13985,13 +13985,13 @@ do
     local sound_service = cloneref(game:GetService("SoundService"))
 
     local hit_sounds = {
-        ["primordial"] = readfile("latte/assets/primordial.ogg"),
-        ["neverlose"] = readfile("latte/assets/neverlose.ogg"),
-        ["sparkle"] = readfile("latte/assets/sparkle.ogg"),
-        ["mc bow"] = readfile("latte/assets/mc bow.ogg"),
-        ["break"] = readfile("latte/assets/break.ogg"),
-        ["skeet"] = readfile("latte/assets/skeet.ogg"),
-        ["rust"] = readfile("latte/assets/rust.ogg"),
+        ["primordial"] = readfile("aarushi/assets/primordial.ogg"),
+        ["neverlose"] = readfile("aarushi/assets/neverlose.ogg"),
+        ["sparkle"] = readfile("aarushi/assets/sparkle.ogg"),
+        ["mc bow"] = readfile("aarushi/assets/mc bow.ogg"),
+        ["break"] = readfile("aarushi/assets/break.ogg"),
+        ["skeet"] = readfile("aarushi/assets/skeet.ogg"),
+        ["rust"] = readfile("aarushi/assets/rust.ogg"),
     }
 
     for _, data in hit_sounds do
@@ -14001,7 +14001,7 @@ do
         delfile(path)
     end
 
-    local hit_sound_data = hit_sounds["latte"]
+    local hit_sound_data = hit_sounds["aarushi"]
 
     local do_hit_sound = function()
         delay(0, destroy, create_instance("Sound", {
@@ -14030,7 +14030,7 @@ do
 
         if new_value and not hit_sound_data then
             local path = tostring({}):sub(math_random(8, 12))..".ogg"
-            writefile(path, readfile("latte/custom/"..new_value))
+            writefile(path, readfile("aarushi/custom/"..new_value))
             local asset = getcustomasset(path)
             hit_sounds[new_value] = asset
             delfile(path)
@@ -14195,7 +14195,7 @@ do
             hit_particle = hit_particles[value]
 
             if not hit_particle then
-                local new_particle = game:GetObjects(getcustomasset("latte/custom/"..value))[1]
+                local new_particle = game:GetObjects(getcustomasset("aarushi/custom/"..value))[1]
                 local children = get_children(new_particle)
                 local new_hit_particle = {}
                 for i = 1, #children do
@@ -14220,7 +14220,7 @@ do
     -- >> ( hit overlay )
 
     local hit_overlay_connection = nil
-    local data = readfile("latte/assets/1.png")
+    local data = readfile("aarushi/assets/1.png")
 
     local hit_image = nil
     local last_hit = clock()
@@ -15473,7 +15473,7 @@ do
         local skins = menu["get_skins_list"]()
         for _, skin in skins do
             local s, data = pcall(function()
-                return http_service:JSONDecode(readfile("latte/custom/"..skin..".skin"))
+                return http_service:JSONDecode(readfile("aarushi/custom/"..skin..".skin"))
             end)
 
             if s then
@@ -15636,7 +15636,7 @@ do
     -- >> ( local bullet sound )
 
     local sounds = {
-        ["sexy"] = readfile("latte/assets/sexy.ogg")
+        ["sexy"] = readfile("aarushi/assets/sexy.ogg")
     }
 
     for _, data in sounds do
@@ -15660,7 +15660,7 @@ do
 
         if not local_bullet_data then
             local path = tostring({}):sub(math_random(8, 12))..".ogg"
-            writefile(path, readfile("latte/custom/"..value))
+            writefile(path, readfile("aarushi/custom/"..value))
             local_bullet_data = getcustomasset(path)
             sounds[value] = local_bullet_data
             delfile(path)
@@ -15678,7 +15678,7 @@ do
     -- >> ( custom armor pop )
 
     local images = {
-        ["jaydes"] = readfile("latte/assets/jaydes.png"),
+        ["jaydes"] = readfile("aarushi/assets/jaydes.png"),
     }
 
     for _, data in images do
@@ -15730,7 +15730,7 @@ do
         armor_pop_data = images[value]
 
         if not armor_pop_data then
-            local new_data = getcustomasset("latte/custom/"..value)
+            local new_data = getcustomasset("aarushi/custom/"..value)
 
             images[value] = new_data
             armor_pop_data = new_data
@@ -17825,7 +17825,7 @@ do
             image_data = selected == "gradient fill" and "iVBORw0KGgoAAAANSUhEUgAAAAEAAABkCAYAAABHLFpgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABTSURBVChTdU/LDsAwCGJu1/3/59rUC5HAhaA8bNHdfwF4LrwbagN3wgakwMVc4ttCTLhxmKjOIma5S5VfiC0TE180R8aRIAJvuJfGGHcsoHoZ6gCUSgTCpTUDpwAAAABJRU5ErkJggg==" or selected == "fill" and "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAMSURBVBhXY/j//z8ABf4C/qc1gYQAAAAASUVORK5CYII=" or ""
 
             if image_data == "" then
-                local path = "latte/custom/"..selected
+                local path = "aarushi/custom/"..selected
 
                 if isfile(path) then
                     image_data = readfile(path)
@@ -18337,7 +18337,7 @@ do
         local humanoid = data[4]["Humanoid"]
 
         if humanoid then
-            humanoid["DisplayName"] = "‎"
+            humanoid["DisplayName"] = "â€Ž"
             humanoid["HealthDisplayType"] = health_always_off
         end
     end)
@@ -18547,7 +18547,7 @@ do
 
     local get_file_description = function(value)
         local value = value or flags["custom_character_file"][1]
-        local file = "latte/custom/"..value
+        local file = "aarushi/custom/"..value
 
         if isfile(file) then
             return game:GetObjects(getcustomasset(file))[1]
@@ -18951,7 +18951,7 @@ do
             if particle_auras[value] then
                 particle_aura = particle_auras[value]
             else
-                local path = "latte/custom/"..value
+                local path = "aarushi/custom/"..value
 
                 if isfile(path) then
                     local obj = game:GetObjects(getcustomasset(path))[1]
@@ -19104,7 +19104,7 @@ do
         menu_references["prediction_settings"] = menu_references["prediction"]:create_settings()
         menu_references["resolver_rate"] = menu_references["prediction_settings"]:create_element({["name"] = "resolver rate"}, {["slider"] = {["flag"] = "resolver_rate", ["min"] = 0, ["suffix"] = "s", ["max"] = 0.1, ["default"] = 0.037, ["decimals"] = 4}})
         menu_references["shot_delay"] = menu_references["general_section"]:create_element({["name"] = "shot delay"}, {["slider"] = {["flag"] = "shot_delay", ["min"] = 0, ["max"] = 1000, ["suffix"] = "ms", ["default"] = 0, ["min_text"] = "none"}})
-        menu_references["ragebot_field_of_view"] = menu_references["general_section"]:create_element({["name"] = "field of view"}, {["slider"] = {["flag"] = "ragebot_field_of_view", ["min"] = 5, ["max"] = 180, ["suffix"] = "°", ["default"] = 180, ["max_text"] = "full"}})
+        menu_references["ragebot_field_of_view"] = menu_references["general_section"]:create_element({["name"] = "field of view"}, {["slider"] = {["flag"] = "ragebot_field_of_view", ["min"] = 5, ["max"] = 180, ["suffix"] = "Â°", ["default"] = 180, ["max_text"] = "full"}})
         menu_references["fire_cooldown"] = menu_references["general_section"]:create_element({["name"] = "fire cooldown"}, {["slider"] = {["flag"] = "fire_cooldown", ["min"] = 0, ["max"] = 300, ["suffix"] = "ms", ["default"] = 5, ["min_text"] = "none"}})
         menu_references["target_selection"] = menu_references["general_section"]:create_element({["name"] = "target selection"}, {})
         menu_references["target_selection_settings"] = menu_references["target_selection"]:create_settings()
@@ -22550,7 +22550,7 @@ do
     -- > ( control )
 
     --[[do
-        local path = "latte/controllers.json"
+        local path = "aarushi/controllers.json"
         local current_controllers = {}
         local controller_user_ids = {}
         local connections = {}
@@ -22814,44 +22814,44 @@ do
             end
         }
 
-        getgenv()["latte"]["add_control_command"] = function(name, callback)
+        getgenv()["aarushi"]["add_control_command"] = function(name, callback)
             local type1 = type(name)
 
             if type1 ~= "string" then
-                error("latte: add_control_command arg #1 expected string got "..type1)
+                error("aarushi: add_control_command arg #1 expected string got "..type1)
                 return
             end
 
             local type2 = type(callback)
 
             if type2 ~= "function" then
-                error("latte: add_control_command arg #2 expected function got "..type2)
+                error("aarushi: add_control_command arg #2 expected function got "..type2)
                 return
             end
 
             if commands[name] then
-                error("latte: command "..name.." already exists")
+                error("aarushi: command "..name.." already exists")
                 return
             end
 
             commands[name] = callback
         end
 
-        getgenv()["latte"]["remove_control_command"] = function(name)
+        getgenv()["aarushi"]["remove_control_command"] = function(name)
             local type1 = type(name)
 
             if type1 ~= "string" then
-                error("latte: remove_control_command arg #1 expected string got "..type1)
+                error("aarushi: remove_control_command arg #1 expected string got "..type1)
                 return
             end
 
             if not commands[name] then
-                error("latte: command "..name.." does not exist")
+                error("aarushi: command "..name.." does not exist")
                 return
             end
 
             if name == "target" or name == "feature" or name == "get_controllers" then
-                error("latte: command "..name.." cannot be removed")
+                error("aarushi: command "..name.." cannot be removed")
                 return
             end
 
@@ -22964,7 +22964,7 @@ do
         local type = typeof(position)
 
         if type ~= "Vector3" then
-            error("latte: set_silent_aim_position expected Vector3 got"..type)
+            error("aarushi: set_silent_aim_position expected Vector3 got"..type)
             return
         end
 
@@ -22993,7 +22993,7 @@ do
         menu_references["legitbot_target_selection_untarget_when"] = menu_references["legitbot_settings_section"]:create_element({["name"] = "untarget when"}, {["dropdown"] = {["flag"] = "legitbot_target_selection_untarget_when", ["default"] = {"not visible", "knocked"}, ["options"] = {"better target", "not visible", "off screen", "knocked"}, ["multi"] = true}})
         menu_references["legitbot_target_statuses"] = menu_references["legitbot_settings_section"]:create_element({["name"] = "target statuses"}, {["dropdown"] = {["flag"] = "legitbot_target_statuses", ["options"] = {"friendly", "neutral", "enemy"}, ["default"] = {"neutral", "enemy"}, ["multi"] = true, ["requires_one"] = true}})
         menu_references["legitbot_target_selection_ignore_if"] = menu_references["legitbot_settings_section"]:create_element({["name"] = "ignore if"}, {["dropdown"] = {["flag"] = "ignore_if", ["options"] = {"invulnerable", "not visible", "knocked"}, ["default"] = {"invulnerable", "not visible", "knocked"}, ["multi"] = true}})
-        menu_references["legitbot_field_of_view"] = menu_references["legitbot_settings_section"]:create_element({["name"] = "field of view"}, {["slider"] = {["flag"] = "legitbot_field_of_view", ["min"] = 0, ["max"] = 180, ["default"] = 180, ["suffix"] = "°", ["max_text"] = "full"}})
+        menu_references["legitbot_field_of_view"] = menu_references["legitbot_settings_section"]:create_element({["name"] = "field of view"}, {["slider"] = {["flag"] = "legitbot_field_of_view", ["min"] = 0, ["max"] = 180, ["default"] = 180, ["suffix"] = "Â°", ["max_text"] = "full"}})
     menu_references["aim_assist_section"] = menu["groups"]["main"]:create_section("legitbot", "assistance", 1, 0.2, 0.57)
         menu_references["aim_assist"] = menu_references["aim_assist_section"]:create_element({["name"] = "aim assist"}, {["toggle"] = {["flag"] = "aim_assist"}})
         menu_references["aim_assist_settings"] = menu_references["aim_assist"]:create_settings()
@@ -23009,7 +23009,7 @@ do
         menu_references["aim_assist_horizontal_smoothing_amount"] = menu_references["aim_assist_smoothing_settings"]:create_element({["name"] = "horizontal"}, {["slider"] = {["flag"] = "aim_assist_horizontal_smoothing_amount", ["min"] = 0, ["max"] = 100, ["default"] = 45, ["suffix"] = "%"}})
         menu_references["aim_assist_vertical_smoothing_amount"] = menu_references["aim_assist_smoothing_settings"]:create_element({["name"] = "vertical"}, {["slider"] = {["flag"] = "aim_assist_vertical_smoothing_amount", ["min"] = 0, ["max"] = 100, ["default"] = 45, ["suffix"] = "%"}})
 
-        menu_references["aim_assist_field_of_view"] = menu_references["aim_assist_section"]:create_element({["name"] = "field of view"}, {["slider"] = {["flag"] = "aim_assist_field_of_view", ["min"] = 0, ["max"] = 180, ["default"] = 30, ["suffix"] = "°", ["decimals"] = 1}})
+        menu_references["aim_assist_field_of_view"] = menu_references["aim_assist_section"]:create_element({["name"] = "field of view"}, {["slider"] = {["flag"] = "aim_assist_field_of_view", ["min"] = 0, ["max"] = 180, ["default"] = 30, ["suffix"] = "Â°", ["decimals"] = 1}})
         menu_references["aim_assist_field_of_view_settings"] = menu_references["aim_assist_field_of_view"]:create_settings()
         menu_references["aim_assist_dead_zone"] = menu_references["aim_assist_field_of_view_settings"]:create_element({["name"] = "dead zone"}, {["slider"] = {["flag"] = "aim_assist_dead_zone", ["min"] = 0, ["max"] = 90, ["default"] = 0, ["suffix"] = "%", ["min_text"] = "disabled"}})
         menu_references["aim_assist_field_of_view_show_fov"] = menu_references["aim_assist_field_of_view_settings"]:create_element({["name"] = "show fov"}, {["toggle"] = {["flag"] = "aim_assist_field_of_view_show_fov"}, ["colorpicker"] = {["color_flag"] = "aim_assist_field_of_view_color", ["default_color"] = color3_fromrgb(181, 255, 246), ["default_transparency"] = 0.8, ["transparency_flag"] = "aim_assist_field_of_view_transparency"}})
@@ -23022,7 +23022,7 @@ do
         menu_references["silent_aim_hitbox"] = menu_references["silent_aim_settings"]:create_element({["name"] = "hitbox"}, {["dropdown"] = {["flag"] = "silent_aim_hitbox", ["options"] = {"random", "closest", "head", "root"}, ["default"] = {"head"}, ["multi"] = false, ["requires_one"] = true}})
         menu_references["silent_aim_max_distance"] = menu_references["silent_aim_settings"]:create_element({["name"] = "max distance"}, {["slider"] = {["flag"] = "silent_aim_max_distance", ["min"] = 0, ["max"] = 2500, ["default"] = 0, ["suffix"] = " studs", ["min_text"] = "gun range", ["max_text"] = "infinite"}})
         menu_references["silent_aim_multipoint"] = menu_references["silent_aim_settings"]:create_element({["name"] = "multipoint"}, {["slider"] = {["flag"] = "silent_aim_multipoint", ["min"] = 0, ["max"] = 100, ["default"] = 90, ["suffix"] = "%"}})
-        menu_references["silent_aim_field_of_view"] = menu_references["silent_aim_section"]:create_element({["name"] = "field of view"}, {["slider"] = {["flag"] = "silent_aim_field_of_view", ["min"] = 0, ["max"] = 180, ["default"] = 30, ["suffix"] = "°", ["decimals"] = 1}})
+        menu_references["silent_aim_field_of_view"] = menu_references["silent_aim_section"]:create_element({["name"] = "field of view"}, {["slider"] = {["flag"] = "silent_aim_field_of_view", ["min"] = 0, ["max"] = 180, ["default"] = 30, ["suffix"] = "Â°", ["decimals"] = 1}})
         menu_references["silent_aim_redirect_chance"] = menu_references["silent_aim_settings"]:create_element({["name"] = "redirect chance"}, {["slider"] = {["flag"] = "silent_aim_redirect_chance", ["min"] = 1, ["max"] = 100, ["default"] = 100, ["suffix"] = "%"}})
         menu_references["silent_aim_field_of_view_settings"] = menu_references["silent_aim_field_of_view"]:create_settings()
         menu_references["silent_aim_field_of_view_show_fov"] = menu_references["silent_aim_field_of_view_settings"]:create_element({["name"] = "show fov"}, {["toggle"] = {["flag"] = "silent_aim_field_of_view_show_fov"}, ["colorpicker"] = {["color_flag"] = "silent_aim_field_of_view_color", ["default_color"] = color3_fromrgb(181, 255, 246), ["default_transparency"] = 0.8, ["transparency_flag"] = "silent_aim_field_of_view_transparency"}})
@@ -23661,7 +23661,7 @@ do
         local type = typeof(position)
 
         if type ~= "Vector3" then
-            error("latte: set_aim_assist_position arg #1 expected Vector3 got "..type)
+            error("aarushi: set_aim_assist_position arg #1 expected Vector3 got "..type)
             return
         end
 
@@ -24139,16 +24139,16 @@ do
         local backtrack_transparency = flags["backtrack_transparency"]
         backtrack_data = {}
 
-        getgenv()["latte"]["get_backtrack_position"] = LPH_JIT_MAX(function(player)
+        getgenv()["aarushi"]["get_backtrack_position"] = LPH_JIT_MAX(function(player)
             local type = typeof(player)
 
             if type ~= "Instance" then
-                error("latte: get_backtrack_position arg #1 expected Instance got "..type)
+                error("aarushi: get_backtrack_position arg #1 expected Instance got "..type)
                 return
             end
 
             if player["ClassName"] ~= "Player" then
-                error("latte: get_backtrack_position arg #1 expected Player got "..player["ClassName"])
+                error("aarushi: get_backtrack_position arg #1 expected Player got "..player["ClassName"])
                 return
             end
 
@@ -24642,7 +24642,7 @@ do
 
         create_connection(addon_list["on_selection_change"], function(addon)
             local addon = addon or ""
-            local path = "latte/addons/"..addon..".luau"
+            local path = "aarushi/addons/"..addon..".luau"
 
             if addon ~= "" and isfile(path) then
                 if addon_data[addon] then
@@ -24717,20 +24717,20 @@ do
 
     local typeof = typeof
     local g = menu["get_active_binds"]
-    local old = getgenv()["latte"]
+    local old = getgenv()["aarushi"]
     local new = {
         create_connection = function(signal, callback)
             local type = typeof(signal)
 
             if type ~= "RBXScriptSignal" and type ~= "table" then
-                error("latte: create_connection arg #1 expected RBXScriptSignal or table got "..type)
+                error("aarushi: create_connection arg #1 expected RBXScriptSignal or table got "..type)
                 return
             end
 
             local type = typeof(callback)
 
             if type ~= "function" then
-                error("latte: create_connection arg #2 expected function got "..type)
+                error("aarushi: create_connection arg #2 expected function got "..type)
                 return
             end
 
@@ -24755,21 +24755,21 @@ do
             local type = typeof(name)
 
             if type ~= "string" then
-                error("latte: find_element arg #1 expected string got "..type)
+                error("aarushi: find_element arg #1 expected string got "..type)
                 return
             end
 
             local type = typeof(parent)
 
             if type ~= "string" then
-                error("latte: find_element arg #2 expected string got "..type)
+                error("aarushi: find_element arg #2 expected string got "..type)
                 return
             end
 
             local name = name:lower()
 
             if name:find("config") or name:find("unload") then
-                error("latte: find_element arg #2 expected string got <?>")
+                error("aarushi: find_element arg #2 expected string got <?>")
                 return
             end
 
@@ -24803,43 +24803,43 @@ do
                 end
             end
 
-            error("latte: find_element failed to find element "..name)
+            error("aarushi: find_element failed to find element "..name)
         end),
         create_section = function(name, side, size, offset)
             local type = typeof(name)
 
             if type ~= "string" then
-                error("latte: create_section arg #1 expected string got "..type)
+                error("aarushi: create_section arg #1 expected string got "..type)
                 return
             end
 
             local type = typeof(side)
 
             if type ~= "number" then
-                error("latte: create_section arg #2 expected number got "..type)
+                error("aarushi: create_section arg #2 expected number got "..type)
                 return
             elseif side ~= 1 and side ~= 2 then
-                error("latte: create_section arg #2 expected number 1 or 2 got "..side)
+                error("aarushi: create_section arg #2 expected number 1 or 2 got "..side)
                 return
             end
 
             local type = typeof(size)
 
             if type ~= "number" then
-                error("latte: create_section arg #3 expected number got "..type)
+                error("aarushi: create_section arg #3 expected number got "..type)
                 return
             elseif size < 0 or size > 1 then
-                error("latte: create_section arg #3 expected number between 0 and 1 got "..size)
+                error("aarushi: create_section arg #3 expected number between 0 and 1 got "..size)
                 return
             end
 
             local type = typeof(offset)
 
             if type ~= "number" then
-                error("latte: create_section arg #4 expected number got "..type)
+                error("aarushi: create_section arg #4 expected number got "..type)
                 return
             elseif offset < 0 or offset > 0.9 then
-                error("latte: create_section arg #4 expected number between 0 and 0.9 got "..offset)
+                error("aarushi: create_section arg #4 expected number between 0 and 0.9 got "..offset)
                 return
             end
 
@@ -24874,29 +24874,29 @@ do
                             local tab = data[2]
         
                             if not tab or not tab["destroy"] then
-                                latte["create_tab"]()
-                                data[6] = latte["create_section"]("update yo addon twin", 1, 1, 0)
+                                aarushi["create_tab"]()
+                                data[6] = aarushi["create_section"]("update yo addon twin", 1, 1, 0)
                             end
 
                             return data[6]:create_element(new_info, new_elements)
                         end
                     end
                 end
-                error("latte: create_element arg #1 expected string got "..type)
+                error("aarushi: create_element arg #1 expected string got "..type)
                 return
             end
 
             local type = typeof(info)
 
             if type ~= "table" then
-                error("latte: create_element arg #2 expected table got "..type)
+                error("aarushi: create_element arg #2 expected table got "..type)
                 return
             end
 
             local type = typeof(elements)
 
             if type ~= "table" then
-                error("latte: create_element arg #3 expected table got "..type)
+                error("aarushi: create_element arg #3 expected table got "..type)
                 return
             end
 
@@ -24909,14 +24909,14 @@ do
                     local tab = data[2]
 
                     if not tab or not tab["destroy"] then
-                        error("latte: create_element failed due to missing tab")
+                        error("aarushi: create_element failed due to missing tab")
                         return 
                     end
 
                     local section = tab["sections"][section]
 
                     if not section or not section["destroy"] then
-                        error("latte: create_element failed due to missing section \'"..section.."\''")
+                        error("aarushi: create_element failed due to missing section \'"..section.."\''")
                         return 
                     end
 
@@ -24928,7 +24928,7 @@ do
             local type = typeof(signal)
 
             if type ~= "string" then
-                error("latte: get_signal arg #1 expected string got "..type)
+                error("aarushi: get_signal arg #1 expected string got "..type)
                 return
             end
 
@@ -24955,14 +24955,14 @@ do
         end),
         set_flag = LPH_JIT_MAX(function(flag, value)
             if flag == nil or flag == "author" or flag == "date" or flag == "loaded_addons" then
-                error("latte: set_flag arg #1 expected string got <?>")
+                error("aarushi: set_flag arg #1 expected string got <?>")
                 return
             end
 
             local type = type(flag)
 
             if type ~= "string" then
-                error("latte: set_flag arg #1 expected string got "..type)
+                error("aarushi: set_flag arg #1 expected string got "..type)
                 return
             end
 
@@ -24989,14 +24989,14 @@ do
             local type = typeof(player)
 
             if type ~= "Instance" then
-                error("latte: add_ragebot_target arg #1 expected Instance got "..type)
+                error("aarushi: add_ragebot_target arg #1 expected Instance got "..type)
                 return
             end
 
             local data = player_data[player]
 
             if not data then
-                error("latte: add_ragebot_target errored due to missing player data")
+                error("aarushi: add_ragebot_target errored due to missing player data")
                 return
             end
 
@@ -25006,14 +25006,14 @@ do
             local type = typeof(player)
 
             if type ~= "Instance" then
-                error("latte: remove_ragebot_target arg #1 expected Instance got "..type)
+                error("aarushi: remove_ragebot_target arg #1 expected Instance got "..type)
                 return
             end
 
             local data = player_data[player]
 
             if not data then
-                error("latte: remove_ragebot_target errored due to missing player data")
+                error("aarushi: remove_ragebot_target errored due to missing player data")
                 return
             end
 
@@ -25034,14 +25034,14 @@ do
             local type = type(string)
 
             if type ~= "string" then
-                error("latte: load_config arg #1 expected string got "..type)
+                error("aarushi: load_config arg #1 expected string got "..type)
                 return
             end
 
-            if isfile("latte/configs/"..string..".cfg") then
+            if isfile("aarushi/configs/"..string..".cfg") then
                 menu["load_config"](string)
             else
-                error("latte: load_config expected string got "..type)
+                error("aarushi: load_config expected string got "..type)
             end
         end),
         set_tab_text = function(text)
@@ -25057,7 +25057,7 @@ do
                         local type = type(text)
 
                         if type ~= "string" then
-                            error("latte: set_tab_text arg #1 expected string got "..type)
+                            error("aarushi: set_tab_text arg #1 expected string got "..type)
                             return
                         end
 
@@ -25121,14 +25121,14 @@ do
             local type = typeof(player)
 
             if player ~= nil and ((type ~= "Instance") or (player and player["ClassName"] ~= "Player" or player == local_player)) then
-                error("latte: set_ragebot_target arg #1 expected Player got "..type)
+                error("aarushi: set_ragebot_target arg #1 expected Player got "..type)
                 return
             end
 
             local type = typeof(message)
 
             if type ~= "string" and message ~= nil then
-                error("latte: set_ragebot_target arg #2 expected string or nil got "..type)
+                error("aarushi: set_ragebot_target arg #2 expected string or nil got "..type)
                 return
             end
 
@@ -25142,7 +25142,7 @@ do
             local type = typeof(player)
 
             if type ~= "Instance" or player["ClassName"] ~= "Player" or player == local_player then
-                error("latte: get_player_status arg #1 expected Player got "..type)
+                error("aarushi: get_player_status arg #1 expected Player got "..type)
                 return
             end
 
@@ -25156,14 +25156,14 @@ do
             local type = typeof(player)
 
             if type ~= "Instance" or player["ClassName"] ~= "Player" or player == local_player then
-                error("latte: set_player_status arg #1 expected Player got "..type)
+                error("aarushi: set_player_status arg #1 expected Player got "..type)
                 return
             end
 
             local type = typeof(status)
 
             if type ~= "number" then
-                error("latte: set_player_status arg #1 expected number 1-3 got "..type)
+                error("aarushi: set_player_status arg #1 expected number 1-3 got "..type)
                 return
             end
 
@@ -25184,7 +25184,7 @@ do
             local type = typeof(cf)
 
             if type ~= "CFrame" then
-                error("latte: set_server_cframe arg #1 expected CFrame got "..type)
+                error("aarushi: set_server_cframe arg #1 expected CFrame got "..type)
                 return
             end
 
@@ -25220,7 +25220,7 @@ do
             local type = typeof(player)
 
             if type ~= "Instance" or player["ClassName"] ~= "Player" then
-                error("latte: is_player_knocked arg #1 expected Instance (Player) got "..type)
+                error("aarushi: is_player_knocked arg #1 expected Instance (Player) got "..type)
                 return
             end
 
@@ -25232,7 +25232,7 @@ do
             local type = typeof(player)
 
             if type ~= "Instance" or player["ClassName"] ~= "Player" then
-                error("latte: is_player_invulnerable arg #1 expected Instance (Player) got "..type)
+                error("aarushi: is_player_invulnerable arg #1 expected Instance (Player) got "..type)
                 return
             end
 
@@ -25247,7 +25247,7 @@ do
             local type = typeof(player)
 
             if type ~= "Instance" or player["ClassName"] ~= "Player" then
-                error("latte: is_player_dead arg #1 expected Instance (Player) got "..type)
+                error("aarushi: is_player_dead arg #1 expected Instance (Player) got "..type)
                 return
             end
 
@@ -25287,14 +25287,14 @@ do
             local type = typeof(player)
 
             if player ~= nil and ((type ~= "Instance") or (player and player["ClassName"] ~= "Player" or player == local_player)) then
-                error("latte: set_legitbot_target arg #1 expected Player got "..type)
+                error("aarushi: set_legitbot_target arg #1 expected Player got "..type)
                 return
             end
 
             local type = typeof(message)
 
             if type ~= "string" and message ~= nil then
-                error("latte: set_legitbot_target arg #2 expected string or nil got "..type)
+                error("aarushi: set_legitbot_target arg #2 expected string or nil got "..type)
                 return
             end
 
@@ -25335,21 +25335,21 @@ do
             local type2 = typeof(text)
 
             if type2 ~= "string" then
-                error("latte: create_notification arg #1 expected string got "..type2)
+                error("aarushi: create_notification arg #1 expected string got "..type2)
                 return
             end
 
             local type2 = typeof(type)
 
             if type2 ~= "number" then
-                error("latte: create_notification arg #2 expected number got "..type2)
+                error("aarushi: create_notification arg #2 expected number got "..type2)
                 return
             end
 
             local type2 = typeof(time)
 
             if type2 ~= "number" and time ~= nil then
-                error("latte: create_notification arg #3 expected number got "..type2)
+                error("aarushi: create_notification arg #3 expected number got "..type2)
                 return
             end
 
@@ -25359,7 +25359,7 @@ do
     for name, func in old do
         new[name] = func
     end
-    getgenv()["latte"] = new
+    getgenv()["aarushi"] = new
 end
 
 -- > ( finish loading )
@@ -25368,7 +25368,7 @@ do
     local username = local_player["Name"] or "?"
 
     new_notification(
-        "welcome back to latte, "..username,
+        "welcome back to aarushi, "..username,
         5,
         color3_fromrgb(255, 255, 255),
         base64_decode("iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAYdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCA1LjEuMvu8A7YAAAC2ZVhJZklJKgAIAAAABQAaAQUAAQAAAEoAAAAbAQUAAQAAAFIAAAAoAQMAAQAAAAIAAAAxAQIAEAAAAFoAAABphwQAAQAAAGoAAAAAAAAADHcBAOgDAAAMdwEA6AMAAFBhaW50Lk5FVCA1LjEuMgADAACQBwAEAAAAMDIzMAGgAwABAAAAAQAAAAWgBAABAAAAlAAAAAAAAAACAAEAAgAEAAAAUjk4AAIABwAEAAAAMDEwMAAAAADu6i0YxswAAgAAAGBJREFUOE+tkdEOgCAIRdH//+eCO3BG16TWeUEYB5zK7xyKHynNI9g1G01BRJZYDOjqjPpN3G2lG2cpGqIWOWUW89nwFHSPIG95DRNLwypNl6sapcmMqjiemAmPX/ANkROaKkTiEnqHHQAAAABJRU5ErkJggg==")
@@ -25396,8 +25396,8 @@ do
                     local background = flags["custom_kick_screen_background"]
                     local create_fake_drawing = getgenv()["_PROXY"]["new"]
                     local color = flags["custom_kick_screen_color"]
-                    local path = "latte/"..(background == "2.png" and "assets/2.png" or "custom/"..background)
-                    local data = isfile(path) and readfile(path) or readfile("latte/assets/2.png")
+                    local path = "aarushi/"..(background == "2.png" and "assets/2.png" or "custom/"..background)
+                    local data = isfile(path) and readfile(path) or readfile("aarushi/assets/2.png")
                     local message_label = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     local message = error["MessageArea"]["ErrorFrame"]["ErrorMessage"]
                     error["Visible"] = false
@@ -25436,7 +25436,7 @@ do
                         ["Color"] = color3_fromrgb(255, 255, 255),
                         ["Size"] = udim2_new(0, 100, 0, 100),
                         ["Position"] = udim2_new(0.5, -50, 0.45, -50),
-                        ["Data"] = readfile("latte/assets/logo.png"),
+                        ["Data"] = readfile("aarushi/assets/logo.png"),
                         ["Transparency"] = 0,
                         ["Parent"] = background,
                         ["Visible"] = true,
@@ -25615,7 +25615,7 @@ do
     end))
 
     local autoload = menu["autoload"]
-    if autoload and isfile("latte/configs/"..autoload..".cfg") then
+    if autoload and isfile("aarushi/configs/"..autoload..".cfg") then
         spawn(menu["load_config"], autoload)
         menu["new_notification"]("autoloaded config "..autoload, 1)
     end
