@@ -24,7 +24,7 @@ end
 
 -- > ( global cheat variables )
 
-local file_path = getgenv().custom_folder or "latte recode"
+local file_path = getgenv().custom_folder or "aarushi recode"
 local user_input_service = cloneref(game:GetService("UserInputService"))
 local get_mouse_location = user_input_service["GetMouseLocation"]
 local players_service = cloneref(game:GetService("Players"))
@@ -296,7 +296,7 @@ local menu = {
 		["error"] = color3_fromrgb(255, 120, 160),
 		["alert"] = color3_fromrgb(255, 160, 190),
 		["logo"] = color3_fromrgb(255, 174, 233),
-		["latte"] = color3_fromrgb(255, 174, 233),
+		["aarushi"] = color3_fromrgb(255, 174, 233),
 		["build"] = color3_fromrgb(255, 174, 233),
 		["cursor"] = color3_fromrgb(255, 174, 233),
 	},
@@ -339,57 +339,57 @@ do
 
 		local files = {
 			["assets"] = {
-				["api.lua"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/api.lua"),
-				["sparkle.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/sparkle.ogg"),
-				["skeet.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/skeet.ogg"),
+				["api.lua"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/api.lua"),
+				["sparkle.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/sparkle.ogg"),
+				["skeet.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/skeet.ogg"),
 				["neverlose.ogg"] = safeHttp(
-					"https://raw.githubusercontent.com/whft/latte/main/assets/neverlose.ogg"
+					"https://raw.githubusercontent.com/whft/aarushi/main/assets/neverlose.ogg"
 				),
-				["break.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/break.ogg"),
-				["mc bow.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/mc%20bow.ogg"),
+				["break.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/break.ogg"),
+				["mc bow.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/mc%20bow.ogg"),
 				["primordial.ogg"] = safeHttp(
-					"https://raw.githubusercontent.com/whft/latte/main/assets/primordial.ogg"
+					"https://raw.githubusercontent.com/whft/aarushi/main/assets/primordial.ogg"
 				),
-				["rust.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/rust.ogg"),
-				["sexy.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/sexy.ogg"),
-				["jaydes.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/jaydes.png"),
-				["1.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/1.png"),
-				["kick.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/kick.png"),
-				["latte_logo.png"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/latte_logo.png"),
+				["rust.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/rust.ogg"),
+				["sexy.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/sexy.ogg"),
+				["jaydes.png"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/jaydes.png"),
+				["1.png"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/1.png"),
+				["kick.png"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/kick.png"),
+				["aarushi_logo.png"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/aarushi_logo.png"),
 				["saturation.png"] = safeHttp(
-					"https://raw.githubusercontent.com/whft/latte/main/assets/saturation.png"
+					"https://raw.githubusercontent.com/whft/aarushi/main/assets/saturation.png"
 				),
 			},
 			["custom"] = {
 				["textures.json"] = safeHttp(
-					"https://raw.githubusercontent.com/whft/latte/main/assets/textures.json"
+					"https://raw.githubusercontent.com/whft/aarushi/main/assets/textures.json"
 				),
 				["character.rbxm"] = debugRBXM(
 					"custom",
 					"character.rbxm",
-					"https://raw.githubusercontent.com/whft/latte/main/assets/character.rbxm"
+					"https://raw.githubusercontent.com/whft/aarushi/main/assets/character.rbxm"
 				),
 				["pinksky.rbxm"] = debugRBXM(
 					"custom",
 					"pinksky.rbxm",
-					"https://raw.githubusercontent.com/whft/latte/main/assets/pinksky.rbxm"
+					"https://raw.githubusercontent.com/whft/aarushi/main/assets/pinksky.rbxm"
 				),
-				["crunch.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/latte.ogg"),
-				["scar.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/scar.ogg"),
+				["crunch.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/aarushi.ogg"),
+				["scar.ogg"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/scar.ogg"),
 				["x hit.rbxm"] = debugRBXM(
 					"custom",
 					"x hit.rbxm",
-					"https://raw.githubusercontent.com/whft/latte/main/assets/x%20hit.rbxm"
+					"https://raw.githubusercontent.com/whft/aarushi/main/assets/x%20hit.rbxm"
 				),
 				["blossom aura.rbxm"] = debugRBXM(
 					"custom",
 					"blossom aura.rbxm",
-					"https://raw.githubusercontent.com/whft/latte/main/assets/blossom%20aura.rbxm"
+					"https://raw.githubusercontent.com/whft/aarushi/main/assets/blossom%20aura.rbxm"
 				),
-				["spam.json"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/spam.json"),
+				["spam.json"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/spam.json"),
 			},
 			["themes"] = {
-				["default.th"] = safeHttp("https://raw.githubusercontent.com/whft/latte/main/assets/default.th"),
+				["default.th"] = safeHttp("https://raw.githubusercontent.com/whft/aarushi/main/assets/default.th"),
 			},
 			["addons"] = {},
 			["configs"] = {},
@@ -755,7 +755,7 @@ do
 
 	local logo = drawing_proxy["new"]("Image", {
 		["Color"] = menu["colors"]["accent"],
-		["Data"] = readfile(file_path .. "/assets/latte_logo.png"),
+		["Data"] = readfile(file_path .. "/assets/aarushi_logo.png"),
 		["Position"] = udim2_new(0, 15, 0, 15),
 		["Parent"] = inside,
 		["Size"] = udim2_new(0, 35, 0, 35),
@@ -763,10 +763,10 @@ do
 		["Transparency"] = 1,
 	})
 
-	local latte_text = drawing_proxy["new"]("Text", {
+	local aarushi_text = drawing_proxy["new"]("Text", {
 		["Font"] = 1,
 		["Color"] = color3_fromrgb(255, 255, 255),
-		["Text"] = getgenv().script_name or "latte",
+		["Text"] = getgenv().script_name or "aarushi",
 		["Parent"] = logo,
 		["Position"] = udim2_new(1, 5, 0, 3),
 		["Size"] = 14,
@@ -947,7 +947,7 @@ do
 
 	local drag_logo = drawing_proxy["new"]("Image", {
 		["Color"] = menu["colors"]["accent"],
-		["Data"] = readfile(file_path .. "/assets/latte_logo.png"),
+		["Data"] = readfile(file_path .. "/assets/aarushi_logo.png"),
 		["Position"] = udim2_new(0.5, -40, 0.5, -40),
 		["Parent"] = drag_inside,
 		["Size"] = udim2_new(0, 80, 0, 80),
@@ -4022,7 +4022,7 @@ do
 		tween(frame, transparency, exponential, out, 0.18)
 		tween(inside, transparency, exponential, out, 0.18)
 		tween(logo, transparency, exponential, out, 0.18)
-		tween(latte_text, transparency, exponential, out, 0.18)
+		tween(aarushi_text, transparency, exponential, out, 0.18)
 		tween(build_text, transparency, exponential, out, 0.18)
 		tween(right_side, transparency, exponential, out, 0.18)
 		tween(right_side_divider, transparency, exponential, out, 0.18)
@@ -7303,7 +7303,7 @@ do
 				end)
 
 				if not s then
-					return "latte: addon " .. name .. " experienced an error while loading: " .. err
+					return "aarushi: addon " .. name .. " experienced an error while loading: " .. err
 				end
 
 				if addon_data[name] then
@@ -7328,7 +7328,7 @@ do
 
 				if not s then
 					spawn(menu["unload_addon"], name)
-					error("latte: addon " .. name .. " experienced an error while loading: " .. err)
+					error("aarushi: addon " .. name .. " experienced an error while loading: " .. err)
 				end
 			end
 		end
@@ -7457,14 +7457,14 @@ do
 
 			create_connection(
 				settings_section:create_element({
-					["name"] = "unload latte",
+					["name"] = "unload aarushi",
 				}, {
 					["button"] = {
 						["confirmation"] = true,
 					},
 				})["on_clicked"],
 				function()
-					getgenv()["_latte"]()
+					getgenv()["_aarushi"]()
 
 					if identifyexecutor() == "AWP" then
 						cleardrawcache()
@@ -7519,18 +7519,18 @@ do
 
 			create_connection(
 				theme_section:create_element({
-					["name"] = "latte color",
+					["name"] = "aarushi color",
 				}, {
 					["colorpicker"] = {
-						["default_color"] = menu["colors"]["latte"],
+						["default_color"] = menu["colors"]["aarushi"],
 						["default_transparency"] = 0,
-						["transparency_flag"] = "!latte_transparency",
-						["color_flag"] = "!latte_color",
+						["transparency_flag"] = "!aarushi_transparency",
+						["color_flag"] = "!aarushi_color",
 					},
 				})["on_color_change"],
 				function(color)
-					menu["colors"]["latte"] = color
-					latte_text["Color"] = color
+					menu["colors"]["aarushi"] = color
+					aarushi_text["Color"] = color
 				end
 			)
 
@@ -8624,7 +8624,7 @@ do
 	-- > ( loading / unloading )
 
 	do
-		local unload = getgenv()["_latte"]
+		local unload = getgenv()["_aarushi"]
 
 		if unload then
 			unload()
@@ -8646,8 +8646,8 @@ do
 
 		getrawmetatable = env["getrawmetatable"]
 
-		env["_latte"] = function()
-			env["_latte"] = nil
+		env["_aarushi"] = function()
+			env["_aarushi"] = nil
 
 			for _, group in menu["groups"] do
 				for _, tab in group["tabs"] do
